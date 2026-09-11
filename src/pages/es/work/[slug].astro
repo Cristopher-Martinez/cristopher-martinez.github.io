@@ -1,0 +1,27 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+import ProjectDetail from '../../../components/ProjectDetail.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries
+    .filter((entry) => entry.data.lang === 'es' && !entry.data.draft)
+    .map((entry) => ({
+      // The glob loader prefixes ids with `<lang>/`; the route wants the slug.
+      params: { slug: entry.id.split('/').pop()! },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'projects'> };
+---
+
+<BaseLayout
+  title={`${entry.data.name} — Cristopher Martinez`}
+  description={entry.data.summary}
+>
+  <SiteHeader />
+  <ProjectDetail entry={entry} />
+</BaseLayout>

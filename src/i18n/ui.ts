@@ -31,12 +31,11 @@ export const ui = {
     'home.eyebrow': 'Full-stack · Infra · AI',
     'home.pitch':
       'I split a video platform into contract-bound capabilities, put it in production on my own infrastructure, and built the AI tooling that develops it.',
-    'work.gpu.body':
-      'Rents a multi-GPU box on Vast.ai and serves a 32B model through vLLM with tensor parallelism. A 32B model does not fit on one GPU, so the provisioner looks for two on the same node.',
     'work.files': 'files',
     'work.deps': 'runtime deps',
     'work.tests': 'tests',
     'work.source': 'source',
+    'work.back': 'All work',
     'log.outcome': 'Outcome',
     'log.back': 'All entries',
     'log.title': 'Engineering log',
@@ -60,12 +59,11 @@ export const ui = {
     'home.eyebrow': 'Full-stack · Infra · IA',
     'home.pitch':
       'Separé una plataforma de video en capacidades con contratos, la puse en producción sobre mi propia infraestructura, y construí el tooling de IA que la desarrolla.',
-    'work.gpu.body':
-      'Alquila una caja multi-GPU en Vast.ai y sirve un modelo de 32B con vLLM en tensor-parallel. Un 32B no entra en una sola GPU, así que el provisioner busca dos en el mismo nodo.',
     'work.files': 'archivos',
     'work.deps': 'dependencias',
     'work.tests': 'tests',
     'work.source': 'código',
+    'work.back': 'Todos los proyectos',
     'log.outcome': 'Resultado',
     'log.back': 'Todas las entradas',
     'log.title': 'Bitácora de ingeniería',

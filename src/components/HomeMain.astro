@@ -43,7 +43,9 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
         projects.map((p) => (
           <li class="card">
             <div class="card-top">
-              <h3>{p.data.name}</h3>
+              <h3>
+                <a href={pathForLang(`/work/${slugOf(p.id)}/`, lang)}>{p.data.name}</a>
+              </h3>
               {p.data.status === 'live' && p.data.url && (
                 <a class="live-chip mono" href={p.data.url} rel="noopener">
                   {new URL(p.data.url).host}
@@ -156,6 +158,19 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
     justify-content: space-between;
     gap: var(--space-xs);
     flex-wrap: wrap;
+  }
+
+  .card-top h3 a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.22em;
+    min-height: 0;
+    display: inline;
+  }
+
+  .card-top h3 a:hover {
+    text-decoration-color: var(--signal);
   }
 
   .card p {
