@@ -56,7 +56,7 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
               )}
             </div>
             <p class="muted">{p.data.summary}</p>
-            <ul class="stack mono">
+            <ul class="tech mono">
               {p.data.stack.map((tech) => (
                 <li>{tech}</li>
               ))}
@@ -131,7 +131,7 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
 
   .cards,
   .entries,
-  .stack {
+  .tech {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -187,7 +187,7 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
     background: var(--signal-soft);
   }
 
-  .stack {
+  .tech {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2xs);
@@ -196,12 +196,12 @@ const slugOf = (id: string) => id.split('/').pop() ?? id;
     color: var(--ink-dim);
   }
 
-  .stack li::after {
+  .tech li::after {
     content: '·';
     margin-inline-start: var(--space-2xs);
   }
 
-  .stack li:last-child::after {
+  .tech li:last-child::after {
     content: '';
   }
 

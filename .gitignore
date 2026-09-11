@@ -26,3 +26,4 @@ pnpm-debug.log*
 # lighthouse reports
 .lighthouse/
 .lighthouseci/
+.claude/

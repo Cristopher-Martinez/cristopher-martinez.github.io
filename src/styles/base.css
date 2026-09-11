@@ -136,8 +136,11 @@ samp {
   padding-inline: var(--space-s);
 }
 
-.stack > * + * {
-  margin-block-start: var(--flow, var(--space-s));
+/* Named `flow` rather than `stack`: a global layout primitive shares a
+   namespace with every component class, and "stack" is a word components want
+   (a tech stack, for one). The collision cost an afternoon once already. */
+.flow > * + * {
+  margin-block-start: var(--flow-space, var(--space-s));
 }
 
 /*
