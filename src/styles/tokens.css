@@ -1,0 +1,125 @@
+/* ============================================================================
+   Design tokens — direction A, "sober technical".
+   Cool graphite ground, a single teal signal, colour used as data.
+
+   Three theme states, not two: an explicit choice stamps data-theme on <html>,
+   while the default "system" setting stamps nothing — so the bare :root block
+   must carry a complete palette on its own. Never declare a colour only inside
+   a media query or [data-theme] block; it would be undefined in the unstamped
+   state and the page would render one theme's text on the other theme's ground.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --ground: #eef1f4;
+  --surface: #fafcfd;
+  --surface-2: #f2f5f8;
+
+  --ink: #0f1519;
+  --ink-soft: #4e5d67;
+  /* 4.8:1 on --surface. The dim tone is used at --step--2, which is small
+     text, so it needs the full 4.5:1 rather than the 3:1 large-text pass. */
+  --ink-dim: #64727c;
+
+  --line: #d4dde4;
+  --line-soft: #e3eaef;
+
+  --signal: #0b6f78;
+  --signal-soft: #d5ecee;
+  --signal-ink: #075058;
+
+  --ok: #1f7a4d;
+  --warn: #8d6108;
+  --crit: #a92c4c;
+
+  --shadow: 0 1px 2px rgb(15 21 25 / 5%), 0 10px 28px -16px rgb(15 21 25 / 25%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --ground: #0f1519;
+    --surface: #161f25;
+    --surface-2: #1c272e;
+
+    --ink: #dee7ec;
+    --ink-soft: #93a3ad;
+    --ink-dim: #8494a0;
+
+    --line: #223038;
+    --line-soft: #1a242a;
+
+    --signal: #3ed6c1;
+    --signal-soft: #12343a;
+    --signal-ink: #7fe7d8;
+
+    --ok: #4dbd86;
+    --warn: #e0ad5a;
+    --crit: #ff7d9c;
+
+    --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 10px 28px -16px rgb(0 0 0 / 70%);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ground: #0f1519;
+  --surface: #161f25;
+  --surface-2: #1c272e;
+
+  --ink: #dee7ec;
+  --ink-soft: #93a3ad;
+  --ink-dim: #8494a0;
+
+  --line: #223038;
+  --line-soft: #1a242a;
+
+  --signal: #3ed6c1;
+  --signal-soft: #12343a;
+  --signal-ink: #7fe7d8;
+
+  --ok: #4dbd86;
+  --warn: #e0ad5a;
+  --crit: #ff7d9c;
+
+  --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 10px 28px -16px rgb(0 0 0 / 70%);
+}
+
+/* ----------------------------------------------------------------------------
+   Type. Fluid across the whole range rather than stepped at breakpoints, so
+   there is no width at which the text is momentarily wrong.
+
+   Faces are declared by intent; they self-host in phase 3. Until then the
+   fallback stack renders, which is exactly what the cascade is for.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+
+  --step--2: clamp(0.69rem, 0.67rem + 0.11vw, 0.76rem);
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.94rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.13rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.44rem, 1.25rem + 0.95vw, 2rem);
+  --step-3: clamp(1.73rem, 1.4rem + 1.65vw, 2.67rem);
+  --step-4: clamp(2.07rem, 1.5rem + 2.85vw, 3.55rem);
+
+  /* Spacing scales with the viewport for the same reason the type does. */
+  --space-3xs: clamp(0.25rem, 0.24rem + 0.05vw, 0.28rem);
+  --space-2xs: clamp(0.5rem, 0.48rem + 0.11vw, 0.56rem);
+  --space-xs: clamp(0.75rem, 0.71rem + 0.16vw, 0.84rem);
+  --space-s: clamp(1rem, 0.95rem + 0.25vw, 1.13rem);
+  --space-m: clamp(1.5rem, 1.43rem + 0.37vw, 1.69rem);
+  --space-l: clamp(2rem, 1.89rem + 0.54vw, 2.25rem);
+  --space-xl: clamp(3rem, 2.84rem + 0.8vw, 3.38rem);
+  --space-2xl: clamp(4rem, 3.78rem + 1.07vw, 4.5rem);
+
+  --radius: 3px;
+  --measure: 68ch;
+  --wrap: 68rem;
+}

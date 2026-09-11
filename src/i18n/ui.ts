@@ -23,6 +23,17 @@ export const ui = {
     'nav.log': 'Engineering log',
     'nav.about': 'About',
     'lang.switch': 'Ver en español',
+    'theme.toggle': 'Switch colour theme',
+    'skip.content': 'Skip to content',
+    'live.label': 'Live',
+    'home.eyebrow': 'Full-stack · Infra · AI',
+    'home.pitch':
+      'I split a video platform into contract-bound capabilities, put it in production on my own infrastructure, and built the AI tooling that develops it.',
+    'work.gpu.body':
+      'Rents a multi-GPU box on Vast.ai and serves a 32B model through vLLM with tensor parallelism. A 32B model does not fit on one GPU, so the provisioner looks for two on the same node.',
+    'work.files': 'files',
+    'work.deps': 'runtime deps',
+    'work.tests': 'tests',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
@@ -33,6 +44,17 @@ export const ui = {
     'nav.log': 'Bitácora',
     'nav.about': 'Perfil',
     'lang.switch': 'View in English',
+    'theme.toggle': 'Cambiar el tema de color',
+    'skip.content': 'Saltar al contenido',
+    'live.label': 'En vivo',
+    'home.eyebrow': 'Full-stack · Infra · IA',
+    'home.pitch':
+      'Separé una plataforma de video en capacidades con contratos, la puse en producción sobre mi propia infraestructura, y construí el tooling de IA que la desarrolla.',
+    'work.gpu.body':
+      'Alquila una caja multi-GPU en Vast.ai y sirve un modelo de 32B con vLLM en tensor-parallel. Un 32B no entra en una sola GPU, así que el provisioner busca dos en el mismo nodo.',
+    'work.files': 'archivos',
+    'work.deps': 'dependencias',
+    'work.tests': 'tests',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 

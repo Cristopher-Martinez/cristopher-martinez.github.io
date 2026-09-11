@@ -1,0 +1,64 @@
+---
+import { langFromPath, useTranslations } from '../i18n/ui';
+
+const t = useTranslations(langFromPath(Astro.url.pathname));
+---
+
+<button id="theme-toggle" type="button" aria-pressed="false">
+  <span aria-hidden="true">◐</span>
+  <span class="visually-hidden">{t('theme.toggle')}</span>
+</button>
+
+<style>
+  #theme-toggle {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-size: var(--step-0);
+    min-width: 44px;
+    justify-content: center;
+    padding-inline: var(--space-2xs);
+  }
+
+  #theme-toggle:hover {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    const root = document.documentElement;
+
+    const isDark = () =>
+      root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+
+    btn.setAttribute('aria-pressed', String(isDark()));
+
+    btn.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      root.dataset.theme = next;
+      btn.setAttribute('aria-pressed', String(next === 'dark'));
+      // Private windows and blocked site data both throw here; the page still works.
+      try {
+        localStorage.setItem('theme', next);
+      } catch {}
+    });
+  })();
+</script>

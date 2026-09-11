@@ -1,4 +1,5 @@
 ---
+import '../styles/base.css';
 import {
   languages,
   localeTags,
@@ -6,6 +7,7 @@ import {
   langFromPath,
   routeWithoutLang,
   pathForLang,
+  useTranslations,
   type Lang,
 } from '../i18n/ui';
 
@@ -20,6 +22,7 @@ const { title, description, ogImage } = Astro.props;
 
 const lang: Lang = langFromPath(Astro.url.pathname);
 const route = routeWithoutLang(Astro.url.pathname);
+const t = useTranslations(lang);
 
 // Astro.site comes from `site` in astro.config.mjs. Social crawlers and
 // hreflang annotations both reject relative URLs.
@@ -39,6 +42,21 @@ const xDefault = new URL(pathForLang(route, defaultLang), Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/*
+      Runs before first paint so a stored theme choice never flashes the other
+      theme first. It must stay inline and in <head>; an external or deferred
+      script is already too late.
+    */}
+    <script is:inline>
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.dataset.theme = stored;
+        }
+      } catch {}
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
 
@@ -60,6 +78,7 @@ const xDefault = new URL(pathForLang(route, defaultLang), Astro.site).href;
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <a class="skip-link" href="#content">{t('skip.content')}</a>
     <slot />
   </body>
 </html>

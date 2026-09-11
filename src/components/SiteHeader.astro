@@ -1,0 +1,41 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <span class="mono brand">cristopher.dev</span>
+    <div class="controls">
+      <LanguageSwitcher />
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-block-end: 1px solid var(--line);
+    background: var(--ground);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    min-height: 56px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+</style>

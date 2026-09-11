@@ -1,17 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import HomeMain from '../components/HomeMain.astro';
 import { useTranslations } from '../i18n/ui';
 
 const t = useTranslations('en');
 ---
 
 <BaseLayout title={t('site.title')} description={t('site.description')}>
-  <header>
-    <LanguageSwitcher />
-  </header>
-  <main>
-    <h1>Cristopher Martinez</h1>
-    <p>{t('site.role')}</p>
-  </main>
+  <SiteHeader />
+  <HomeMain />
 </BaseLayout>

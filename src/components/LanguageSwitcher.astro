@@ -21,9 +21,33 @@ const others = (Object.keys(languages) as Lang[]).filter((code) => code !== curr
 <nav aria-label={t('lang.switch')}>
   {
     others.map((code) => (
-      <a href={pathForLang(route, code)} hreflang={localeTags[code]} lang={localeTags[code]}>
-        {t('lang.switch')}
+      <a
+        class="lang-link"
+        href={pathForLang(route, code)}
+        hreflang={localeTags[code]}
+        lang={localeTags[code]}
+      >
+        {localeTags[code].toUpperCase()}
       </a>
     ))
   }
 </nav>
+
+<style>
+  .lang-link {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding-inline: var(--space-2xs);
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .lang-link:hover {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+</style>
