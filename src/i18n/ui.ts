@@ -34,6 +34,9 @@ export const ui = {
     'work.files': 'files',
     'work.deps': 'runtime deps',
     'work.tests': 'tests',
+    'work.source': 'source',
+    'log.outcome': 'Outcome',
+    'log.back': 'All entries',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
@@ -55,6 +58,9 @@ export const ui = {
     'work.files': 'archivos',
     'work.deps': 'dependencias',
     'work.tests': 'tests',
+    'work.source': 'código',
+    'log.outcome': 'Resultado',
+    'log.back': 'Todas las entradas',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 

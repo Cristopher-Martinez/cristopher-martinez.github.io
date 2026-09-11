@@ -3,7 +3,12 @@
     "collect": {
       "startServerCommand": "pnpm preview",
       "startServerReadyPattern": "localhost:4321",
-      "url": ["http://localhost:4321/", "http://localhost:4321/es/"],
+      "url": [
+        "http://localhost:4321/",
+        "http://localhost:4321/es/",
+        "http://localhost:4321/bitacora/orphan-gpu-reconciler/",
+        "http://localhost:4321/es/bitacora/orphan-gpu-reconciler/"
+      ],
       "numberOfRuns": 3
     },
     "assert": {

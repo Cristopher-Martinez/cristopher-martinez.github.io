@@ -1,19 +1,31 @@
 ---
-import { langFromPath, useTranslations } from '../i18n/ui';
+import { getCollection } from 'astro:content';
+import { langFromPath, useTranslations, pathForLang } from '../i18n/ui';
 
 const lang = langFromPath(Astro.url.pathname);
 const t = useTranslations(lang);
 
-const live = [
-  { host: 'velocityanime.com', href: 'https://velocityanime.com' },
-  { host: 'istemp.xyz', href: 'https://istemp.xyz' },
-];
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.lang === lang && !p.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 
-const gpuStats = [
-  { value: '32', label: t('work.files') },
-  { value: '0', label: t('work.deps') },
-  { value: '11', label: t('work.tests') },
-];
+const log = (await getCollection('bitacora'))
+  .filter((e) => e.data.lang === lang && !e.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// Formatted in UTC on purpose — see the note in LogEntry.astro. A frontmatter
+// date coerces to UTC midnight and would render as the previous day in any
+// negative-offset zone.
+const dateFormat = new Intl.DateTimeFormat(lang, {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+/** Strips the `<lang>/` prefix the glob loader puts in front of every id. */
+const slugOf = (id: string) => id.split('/').pop() ?? id;
 ---
 
 <main id="content" class="wrap">
@@ -22,36 +34,66 @@ const gpuStats = [
     <h1>Cristopher Martinez</h1>
     <p class="role muted">{t('site.role')}</p>
     <p class="pitch muted">{t('home.pitch')}</p>
+  </section>
 
-    <ul class="live" aria-label={t('live.label')}>
+  <section class="work" aria-labelledby="work-heading">
+    <h2 id="work-heading" class="label">{t('nav.work')}</h2>
+    <ul class="cards">
       {
-        live.map((site) => (
-          <li>
-            <a class="live-chip mono" href={site.href} rel="noopener">
-              {site.host}
-            </a>
+        projects.map((p) => (
+          <li class="card">
+            <div class="card-top">
+              <h3>{p.data.name}</h3>
+              {p.data.status === 'live' && p.data.url && (
+                <a class="live-chip mono" href={p.data.url} rel="noopener">
+                  {new URL(p.data.url).host}
+                </a>
+              )}
+              {p.data.status === 'open' && p.data.repo && (
+                <a class="live-chip mono" href={p.data.repo} rel="noopener">
+                  {t('work.source')}
+                </a>
+              )}
+            </div>
+            <p class="muted">{p.data.summary}</p>
+            <ul class="stack mono">
+              {p.data.stack.map((tech) => (
+                <li>{tech}</li>
+              ))}
+            </ul>
+            {p.data.stats && (
+              <dl class="stats mono">
+                {p.data.stats.map((s) => (
+                  <div>
+                    <dt>{s.label}</dt>
+                    <dd>{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </li>
         ))
       }
     </ul>
   </section>
 
-  <section class="work" aria-labelledby="work-heading">
-    <h2 id="work-heading" class="label">{t('nav.work')}</h2>
-    <article class="card">
-      <h3>velocitygpu</h3>
-      <p class="muted">{t('work.gpu.body')}</p>
-      <dl class="stats mono">
-        {
-          gpuStats.map((stat) => (
-            <div>
-              <dt>{stat.label}</dt>
-              <dd>{stat.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </article>
+  <section class="log" aria-labelledby="log-heading">
+    <h2 id="log-heading" class="label">{t('nav.log')}</h2>
+    <ul class="entries">
+      {
+        log.map((entry) => (
+          <li>
+            <a href={pathForLang(`/bitacora/${slugOf(entry.id)}/`, lang)}>
+              <time class="mono" datetime={entry.data.date.toISOString()}>
+                {dateFormat.format(entry.data.date)}
+              </time>
+              <span class="entry-title">{entry.data.title}</span>
+            </a>
+            <p class="muted">{entry.data.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </main>
 
@@ -76,17 +118,54 @@ const gpuStats = [
     margin-block-start: var(--space-m);
   }
 
-  .live {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2xs);
+  section[aria-labelledby] {
+    padding-block-end: var(--space-xl);
+  }
+
+  section > .label {
+    display: block;
+    font-size: var(--step--2);
+    font-weight: 500;
+    margin-block-end: var(--space-s);
+  }
+
+  .cards,
+  .entries,
+  .stack {
     list-style: none;
     padding: 0;
-    margin-block-start: var(--space-l);
+    margin: 0;
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-inline-start: 2px solid var(--signal);
+    border-radius: var(--radius);
+    padding: var(--space-m);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+  }
+
+  .card p {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    line-height: 1.6;
   }
 
   .live-chip {
-    font-size: var(--step--1);
+    font-size: var(--step--2);
     color: var(--signal);
     text-decoration: none;
     border: 1px solid var(--signal);
@@ -108,30 +187,22 @@ const gpuStats = [
     background: var(--signal-soft);
   }
 
-  .work {
-    padding-block-end: var(--space-2xl);
-  }
-
-  /* The section heading exists for document outline more than for display,
-     so it takes the label treatment rather than a heading-sized step. */
-  .work > .label {
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-block-start: var(--space-s);
     font-size: var(--step--2);
-    font-weight: 500;
-    margin-block-end: var(--space-s);
+    color: var(--ink-dim);
   }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-inline-start: 2px solid var(--signal);
-    border-radius: var(--radius);
-    padding: var(--space-m);
+  .stack li::after {
+    content: '·';
+    margin-inline-start: var(--space-2xs);
   }
 
-  .card p {
-    margin-block-start: var(--space-2xs);
-    font-size: var(--step--1);
-    line-height: 1.6;
+  .stack li:last-child::after {
+    content: '';
   }
 
   .stats {
@@ -161,6 +232,43 @@ const gpuStats = [
     margin: 0;
     font-size: var(--step--1);
     font-weight: 500;
+  }
+
+  .entries {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .entries a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-xs);
+    text-decoration: none;
+    min-height: 0;
+  }
+
+  .entries time {
+    font-size: var(--step--2);
+    color: var(--ink-dim);
+    flex: none;
+  }
+
+  .entry-title {
     color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.25em;
+  }
+
+  .entries a:hover .entry-title {
+    text-decoration-color: var(--signal);
+  }
+
+  .entries p {
+    margin-block-start: var(--space-3xs);
+    font-size: var(--step--1);
+    line-height: 1.6;
   }
 </style>
