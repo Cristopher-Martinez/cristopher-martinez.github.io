@@ -1,0 +1,84 @@
+---
+import { langFromPath, useTranslations } from '../i18n/ui';
+
+const lang = langFromPath(Astro.url.pathname);
+const t = useTranslations(lang);
+
+// The two profiles a recruiter will open next. Email is deliberately absent
+// until its owner decides to publish it — a mailto on a public page is a
+// choice, not a default.
+const links = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cristopher-martinez/' },
+  { label: 'GitHub', href: 'https://github.com/Cristopher-Martinez' },
+];
+---
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <div class="reach">
+      <p class="label">{t('footer.reach')}</p>
+      <ul class="links">
+        {
+          links.map((l) => (
+            <li>
+              <a class="mono" href={l.href} rel="me noopener">
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <p class="mono meta">{t('footer.built')}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-block-start: 1px solid var(--line);
+    background: var(--ground);
+    margin-block-start: var(--space-2xl);
+  }
+
+  .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-m);
+    flex-wrap: wrap;
+    padding-block: var(--space-l);
+  }
+
+  .reach .label {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+  }
+
+  .links a {
+    font-size: var(--step--1);
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 0.25em;
+    min-height: 44px;
+  }
+
+  .links a:hover {
+    text-decoration-color: var(--signal);
+    color: var(--signal);
+  }
+
+  .meta {
+    font-size: var(--step--2);
+    color: var(--ink-dim);
+    margin: 0;
+  }
+</style>

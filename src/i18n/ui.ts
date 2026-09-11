@@ -43,6 +43,9 @@ export const ui = {
     'log.intro': 'Problem, constraint, what I discarded, the decision, and the measured result. Including the entries where something broke.',
     'about.title': 'About',
     'exp.title': 'Experience',
+    'footer.reach': 'Reach me',
+    'footer.built': 'Astro · static · zero client JS by default',
+    'home.where': 'Bogotá, Colombia · Remote-friendly · Spanish and English',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
@@ -73,6 +76,9 @@ export const ui = {
     'log.intro': 'Problema, restricción, lo que descarté, la decisión y el resultado medido. Incluidas las entradas donde algo se rompió.',
     'about.title': 'Perfil',
     'exp.title': 'Experiencia',
+    'footer.reach': 'Contacto',
+    'footer.built': 'Astro · estático · cero JS en el cliente por defecto',
+    'home.where': 'Bogotá, Colombia · Remoto · Español e inglés',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 
