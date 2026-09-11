@@ -12,6 +12,27 @@ const description =
 <BaseLayout title={`${t('about.title')} — Cristopher Martinez`} description={description}>
   <SiteHeader />
   <AboutShell heading={t('about.title')} lede={description}>
+    <h2>LoopPay — infraestructura de pagos, desde octubre de 2022</h2>
+    <p>
+      Dinero que entra, dinero que sale, y todo lo que tiene que aguantar cuando no pasa a la
+      primera. Trabajo a lo largo de todo el stack — React adelante, una API de GraphQL y Prisma
+      detrás, AWS Lambda desplegado con CDK, pipelines de CI y suites end-to-end — dentro de un
+      equipo de ingeniería de alrededor de cuarenta personas, sobre una base de código que pasa
+      los diez mil commits.
+    </p>
+    <p>
+      Los problemas que más tiempo me llevaron son los poco vistosos: reversiones masivas de pagos,
+      entrega de webhooks cuando el otro lado puede reintentar cuando quiera, conciliación de
+      saldos, límites de tasa, y trazas de auditoría que tienen que sobrevivir a que alguien las
+      cuestione. La observabilidad es OpenTelemetry de punta a punta, con spans de base de datos
+      incluidos.
+    </p>
+    <p>
+      Un detalle que no es un detalle: ahí la aritmética del dinero es decimal exacta, nunca punto
+      flotante. Cualquiera que haya visto aparecer un centavo de la nada en un libro contable sabe
+      por qué eso no es una preferencia.
+    </p>
+
     <h2>Sistemas, no funcionalidades</h2>
     <p>
       Separé una plataforma de video en ocho paquetes de capacidades que se hablan a través de

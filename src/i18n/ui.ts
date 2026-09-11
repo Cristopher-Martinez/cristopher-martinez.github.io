@@ -29,6 +29,7 @@ export const ui = {
     'skip.content': 'Skip to content',
     'live.label': 'Live',
     'home.eyebrow': 'Full-stack · Infra · AI',
+    'home.current': 'Payments infrastructure at LoopPay · since 2022',
     'home.pitch':
       'I split a video platform into contract-bound capabilities, put it in production on my own infrastructure, and built the AI tooling that develops it.',
     'work.files': 'files',
@@ -41,6 +42,7 @@ export const ui = {
     'log.title': 'Engineering log',
     'log.intro': 'Problem, constraint, what I discarded, the decision, and the measured result. Including the entries where something broke.',
     'about.title': 'About',
+    'exp.title': 'Experience',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
@@ -57,6 +59,7 @@ export const ui = {
     'skip.content': 'Saltar al contenido',
     'live.label': 'En vivo',
     'home.eyebrow': 'Full-stack · Infra · IA',
+    'home.current': 'Infraestructura de pagos en LoopPay · desde 2022',
     'home.pitch':
       'Separé una plataforma de video en capacidades con contratos, la puse en producción sobre mi propia infraestructura, y construí el tooling de IA que la desarrolla.',
     'work.files': 'archivos',
@@ -69,6 +72,7 @@ export const ui = {
     'log.title': 'Bitácora de ingeniería',
     'log.intro': 'Problema, restricción, lo que descarté, la decisión y el resultado medido. Incluidas las entradas donde algo se rompió.',
     'about.title': 'Perfil',
+    'exp.title': 'Experiencia',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 
