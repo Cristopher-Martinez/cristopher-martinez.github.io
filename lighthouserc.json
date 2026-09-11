@@ -6,6 +6,10 @@
       "url": [
         "http://localhost:4321/",
         "http://localhost:4321/es/",
+        "http://localhost:4321/bitacora/",
+        "http://localhost:4321/es/bitacora/",
+        "http://localhost:4321/about/",
+        "http://localhost:4321/es/about/",
         "http://localhost:4321/bitacora/orphan-gpu-reconciler/",
         "http://localhost:4321/es/bitacora/orphan-gpu-reconciler/"
       ],

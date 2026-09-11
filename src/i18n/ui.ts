@@ -19,6 +19,8 @@ export const ui = {
     'site.description':
       'Full-stack engineer building video platforms, GPU infrastructure and AI developer tooling. Two products running in production.',
     'site.role': 'Senior full-stack engineer',
+    'nav.home': 'Home',
+    'nav.primary': 'Primary',
     'nav.work': 'Work',
     'nav.log': 'Engineering log',
     'nav.about': 'About',
@@ -37,12 +39,17 @@ export const ui = {
     'work.source': 'source',
     'log.outcome': 'Outcome',
     'log.back': 'All entries',
+    'log.title': 'Engineering log',
+    'log.intro': 'Problem, constraint, what I discarded, the decision, and the measured result. Including the entries where something broke.',
+    'about.title': 'About',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
     'site.description':
       'Ingeniero full-stack. Construyo plataformas de video, infraestructura de GPU y herramientas de IA para desarrollo. Dos productos en producción.',
     'site.role': 'Ingeniero full-stack senior',
+    'nav.home': 'Inicio',
+    'nav.primary': 'Principal',
     'nav.work': 'Proyectos',
     'nav.log': 'Bitácora',
     'nav.about': 'Perfil',
@@ -61,6 +68,9 @@ export const ui = {
     'work.source': 'código',
     'log.outcome': 'Resultado',
     'log.back': 'Todas las entradas',
+    'log.title': 'Bitácora de ingeniería',
+    'log.intro': 'Problema, restricción, lo que descarté, la decisión y el resultado medido. Incluidas las entradas donde algo se rompió.',
+    'about.title': 'Perfil',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 

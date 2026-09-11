@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+import AboutShell from '../../../components/AboutShell.astro';
+import { useTranslations } from '../../../i18n/ui';
+
+const t = useTranslations('es');
+const description =
+  'Ingeniero full-stack senior. Arquitectura por capacidades, infraestructura en producción y herramientas de IA para desarrollo.';
+---
+
+<BaseLayout title={`${t('about.title')} — Cristopher Martinez`} description={description}>
+  <SiteHeader />
+  <AboutShell heading={t('about.title')} lede={description}>
+    <h2>Sistemas, no funcionalidades</h2>
+    <p>
+      Separé una plataforma de video en ocho paquetes de capacidades que se hablan a través de
+      contratos publicados. Los productos importan únicamente el índice público de cada capacidad
+      — las subrutas internas están bloqueadas por una regla de lint y no por convención, porque
+      una frontera que nadie hace cumplir deja de ser una frontera. Las dependencias se cablean en
+      un solo composition root y bajan como puertos.
+    </p>
+
+    <h2>Lo entrego y lo opero</h2>
+    <p>
+      Hoy hay dos productos respondiendo en sus propios dominios, sobre infraestructura que
+      administro: VPS, Docker, nginx, Prometheus y Grafana, con cinco pipelines de despliegue. El
+      monorepo lleva 1.923 commits y 258 archivos de test.
+    </p>
+    <p>
+      También lo audité contra mí mismo: trece módulos, cincuenta y ocho hallazgos, once de ellos
+      críticos, ordenados por un grafo de dependencias. Esa auditoría dice más de cómo trabajo que
+      el código limpio — salgo a buscar mis propios errores antes de que los encuentre otro.
+    </p>
+
+    <h2>IA como infraestructura, no como llamada a una API</h2>
+    <p>
+      Casi todo lo que se presenta como «IA» es llamar a un endpoint de chat. Lo mío está una capa
+      más abajo: alquilar cajas multi-GPU y elegir ofertas por VRAM para partir un modelo de 32B
+      entre dos GPUs con tensor-parallel; embeddings faciales agrupados por tenant, donde cruzar la
+      frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un servidor
+      MCP que le da memoria durable a los agentes de código, con 181 tests detrás.
+    </p>
+
+    <h2>Cómo trabajo</h2>
+    <p>
+      Conceptos antes que código. Prefiero perder una tarde entendiendo por qué algo se rompe que
+      una hora parchándolo alrededor, porque el parche vuelve y el entendimiento no. Escribo la
+      verificación que falla cuando la lógica se rompe, y dejo los atajos a la vista en lugar de
+      disimular que no están.
+    </p>
+  </AboutShell>
+</BaseLayout>

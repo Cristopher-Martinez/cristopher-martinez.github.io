@@ -1,11 +1,40 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import { langFromPath, routeWithoutLang, pathForLang, useTranslations } from '../i18n/ui';
+
+const lang = langFromPath(Astro.url.pathname);
+const here = routeWithoutLang(Astro.url.pathname);
+const t = useTranslations(lang);
+
+const links = [
+  { route: '/', key: 'nav.home' as const },
+  { route: '/bitacora/', key: 'nav.log' as const },
+  { route: '/about/', key: 'nav.about' as const },
+];
+
+/** A section is current when the path starts with it; `/` only matches itself. */
+const isCurrent = (route: string) => (route === '/' ? here === '/' : here.startsWith(route));
 ---
 
 <header class="site-header">
   <div class="wrap bar">
-    <span class="mono brand">cristopher.dev</span>
+    <nav class="primary" aria-label={t('nav.primary')}>
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={pathForLang(link.route, lang)}
+                aria-current={isCurrent(link.route) ? 'page' : undefined}
+              >
+                {t(link.key)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
     <div class="controls">
       <LanguageSwitcher />
       <ThemeToggle />
@@ -28,9 +57,33 @@ import ThemeToggle from './ThemeToggle.astro';
     flex-wrap: wrap;
   }
 
-  .brand {
-    font-size: var(--step--1);
+  .primary ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .primary a {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .primary a:hover {
+    color: var(--signal);
+  }
+
+  /* The current section is marked with the signal colour and a rule, never with
+     colour alone — colour is not available to every reader. */
+  .primary a[aria-current='page'] {
+    color: var(--signal);
+    box-shadow: inset 0 -2px 0 0 var(--signal);
   }
 
   .controls {

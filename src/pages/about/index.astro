@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import AboutShell from '../../components/AboutShell.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const t = useTranslations('en');
+const description =
+  'Senior full-stack engineer. Capability architecture, production infrastructure, and AI developer tooling.';
+---
+
+<BaseLayout title={`${t('about.title')} — Cristopher Martinez`} description={description}>
+  <SiteHeader />
+  <AboutShell heading={t('about.title')} lede={description}>
+    <h2>Systems, not features</h2>
+    <p>
+      I split a video platform into eight capability packages that talk to each other through
+      published contracts. Products import only the public index of each capability — internal
+      subpaths are blocked by a lint rule rather than by convention, because a boundary nobody
+      enforces stops being a boundary. Dependencies are wired in a single composition root and
+      passed down as ports.
+    </p>
+
+    <h2>I ship it and I run it</h2>
+    <p>
+      Two products answer on their own domains today, on infrastructure I operate: VPS, Docker,
+      nginx, Prometheus and Grafana, across five deployment pipelines. The monorepo carries 1,923
+      commits and 258 test files.
+    </p>
+    <p>
+      I also audited it against myself — thirteen modules, fifty-eight findings, eleven of them
+      critical, ordered by a dependency graph. That audit says more about how I work than clean
+      code would: I go looking for my own mistakes before somebody else finds them.
+    </p>
+
+    <h2>AI as infrastructure, not as an API call</h2>
+    <p>
+      Most work described as "AI" means calling a chat endpoint. Mine sits a layer below that:
+      renting multi-GPU boxes and picking offers by VRAM so a 32B model can be split across two
+      GPUs with tensor parallelism; face embeddings clustered per tenant, where crossing a tenant
+      boundary throws rather than silently merging people; and an MCP server that gives coding
+      agents durable project memory, with 181 tests behind it.
+    </p>
+
+    <h2>How I work</h2>
+    <p>
+      Concepts before code. I would rather spend an afternoon understanding why something breaks
+      than an hour patching around it, because the patch comes back and the understanding does not.
+      I write the check that fails when the logic breaks, and I keep the shortcuts visible instead
+      of pretending they are not there.
+    </p>
+  </AboutShell>
+</BaseLayout>
