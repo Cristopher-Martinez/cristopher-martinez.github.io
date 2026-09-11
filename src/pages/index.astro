@@ -1,13 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { useTranslations } from '../i18n/ui';
+
+const t = useTranslations('en');
 ---
 
-<BaseLayout
-  title="Cristopher Martinez — Senior Full-Stack Engineer"
-  description="Full-stack engineer building video platforms, GPU infrastructure and AI developer tooling. Two products running in production."
->
+<BaseLayout title={t('site.title')} description={t('site.description')}>
+  <header>
+    <LanguageSwitcher />
+  </header>
   <main>
     <h1>Cristopher Martinez</h1>
-    <p>Senior full-stack engineer. Portfolio under construction.</p>
+    <p>{t('site.role')}</p>
   </main>
 </BaseLayout>

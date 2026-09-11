@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "measure": "astro build && lhci autorun",
     "astro": "astro"
   },
@@ -25,6 +26,8 @@
     "esbuild": true
   },
   "devDependencies": {
-    "@lhci/cli": "^0.15.1"
+    "@astrojs/check": "^0.9.10",
+    "@lhci/cli": "^0.15.1",
+    "typescript": "^6.0.3"
   }
 }

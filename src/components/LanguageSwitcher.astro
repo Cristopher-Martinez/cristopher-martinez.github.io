@@ -1,0 +1,29 @@
+---
+import {
+  languages,
+  localeTags,
+  langFromPath,
+  routeWithoutLang,
+  pathForLang,
+  useTranslations,
+  type Lang,
+} from '../i18n/ui';
+
+const current: Lang = langFromPath(Astro.url.pathname);
+const route = routeWithoutLang(Astro.url.pathname);
+const t = useTranslations(current);
+
+// Link to the same page in the other language, not to the home page — sending
+// readers back to the root on every switch is the classic i18n annoyance.
+const others = (Object.keys(languages) as Lang[]).filter((code) => code !== current);
+---
+
+<nav aria-label={t('lang.switch')}>
+  {
+    others.map((code) => (
+      <a href={pathForLang(route, code)} hreflang={localeTags[code]} lang={localeTags[code]}>
+        {t('lang.switch')}
+      </a>
+    ))
+  }
+</nav>
