@@ -1,5 +1,8 @@
 ---
 import '../styles/base.css';
+// `?url` hands back the hashed build path, which is the only way to preload an
+// asset whose filename is decided at build time.
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import {
   languages,
   localeTags,
@@ -56,6 +59,14 @@ const xDefault = new URL(pathForLang(route, defaultLang), Astro.site).href;
         }
       } catch {}
     </script>
+
+    {/*
+      Only the display face is preloaded: it renders the h1, which is the LCP
+      element on every page. The mono face carries small labels and can swap in
+      late without moving the metric. `crossorigin` is required even same-origin
+      — without it the preload is discarded and the font is fetched twice.
+    */}
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />

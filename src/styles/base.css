@@ -1,3 +1,15 @@
+/*
+ * Self-hosted rather than pulled from a font CDN: one less DNS and TLS
+ * handshake, no render-blocking third-party stylesheet, and since 2020 the
+ * shared cross-site cache that justified the CDN no longer exists — caches are
+ * partitioned per origin.
+ *
+ * Both are variable fonts, so the full weight axis arrives in a single file.
+ * Latin is ~34 KB and ~40 KB; other subsets are declared with unicode-range
+ * and are never fetched for this content.
+ */
+@import '@fontsource-variable/archivo/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
 @import './tokens.css';
 
 /* ----------------------------------------------------------------------------
