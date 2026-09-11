@@ -1,43 +1,57 @@
-# Astro Starter Kit: Minimal
+# Portfolio
 
-```sh
-pnpm create astro@latest -- --template minimal
+Source for my portfolio and engineering log. Astro, static output, bilingual.
+
+## Running it
+
+```bash
+pnpm install
+pnpm dev                # development
+pnpm build && pnpm preview   # the artefact that actually ships
+pnpm check              # typecheck
+pnpm measure            # budget gate, two templates, ~2 min
+pnpm measure:all        # budget gate, full sweep, ~12 min
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Decisions worth knowing about
 
-## 🚀 Project Structure
+**Measurement runs against the production build, never the dev server.** `astro
+dev` serves unbundled, unminified code with unprocessed images; its Lighthouse
+score is inflated and describes no real site. Every number in this repo comes
+from `pnpm preview`.
 
-Inside of your Astro project, you'll see the following folders and files:
+**The budget is a gate, not a dashboard.** `lighthouserc.json` asserts Core Web
+Vitals and transfer sizes, and CI fails when they regress. It has caught a
+missing meta description, a 3.51:1 contrast ratio in 11px text, and a heading
+level skipped from `h1` to `h3` — none of which are visible by looking.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+Note that size budgets measure **transferred** bytes. A negative test built from
+repetitive data compresses to nothing and sails through; use incompressible data
+to prove the gate still bites.
+
+**Content schemas encode what the content has to prove.** A log entry without a
+measured outcome is rejected at build time, because an entry that stops at "and
+then I built it" reads as marketing. A project marked `live` must carry the URL
+it is live at.
+
+**Both languages are first-class.** English serves from `/`, Spanish from
+`/es/`, each page emits reciprocal `hreflang` alternates plus `x-default`, and
+the language switcher links to the same page rather than sending readers back to
+the home page.
+
+**Zero JavaScript ships by default.** The theme toggle is an inline script that
+runs before first paint so a stored choice never flashes the wrong theme. There
+are no hydrated islands at present; React is configured for when one is
+justified.
+
+## Layout
+
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+src/
+  content/          projects and log entries, markdown, per language
+  content.config.ts Zod schemas — the build fails on invalid entries
+  i18n/ui.ts        typed string table and route helpers
+  layouts/          document shell: meta, hreflang, no-flash theme script
+  components/       page sections and the shared chrome
+  styles/           tokens (three theme states) and base styles
+```

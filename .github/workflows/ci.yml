@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm check
+
+      # Builds, starts the preview server, and asserts the budget in
+      # lighthouserc.json. Exits non-zero when a budget is missed, which is the
+      # whole point: a gate that cannot fail the build is decoration.
+      #
+      # Ubuntu runners ship Chrome, so no browser setup is needed here. Locally
+      # on Windows this requires Chrome rather than Edge — msedge.exe delegates
+      # to an already-running instance and leaves chrome-launcher holding a dead
+      # process id.
+      - name: Performance and accessibility budget
+        run: pnpm measure:all
