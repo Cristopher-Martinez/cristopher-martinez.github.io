@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  /** Path to a social preview image, relative to the site root. */
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+
+// Astro.site comes from `site` in astro.config.mjs. Social crawlers reject
+// relative URLs, so every shared link needs these resolved absolutely.
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : undefined;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
