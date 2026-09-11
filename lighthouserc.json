@@ -11,7 +11,9 @@
         "http://localhost:4321/about/",
         "http://localhost:4321/es/about/",
         "http://localhost:4321/bitacora/orphan-gpu-reconciler/",
-        "http://localhost:4321/es/bitacora/orphan-gpu-reconciler/"
+        "http://localhost:4321/es/bitacora/orphan-gpu-reconciler/",
+        "http://localhost:4321/bitacora/mcp-write-reported-success/",
+        "http://localhost:4321/es/bitacora/mcp-write-reported-success/"
       ],
       "numberOfRuns": 3
     },

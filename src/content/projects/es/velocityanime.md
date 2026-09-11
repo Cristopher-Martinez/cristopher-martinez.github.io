@@ -9,7 +9,7 @@ stats:
   - { value: '291', label: 'archivos' }
   - { value: '72', label: 'tests' }
   - { value: '8', label: 'capacidades' }
-order: 2
+order: 3
 ---
 
 El producto importa únicamente el índice público de cada capacidad core

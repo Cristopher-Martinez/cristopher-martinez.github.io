@@ -8,7 +8,7 @@ stats:
   - { value: '32', label: 'archivos' }
   - { value: '0', label: 'dependencias' }
   - { value: '11', label: 'tests' }
-order: 1
+order: 2
 ---
 
 Un modelo de 32B no entra en una sola GPU: son unos 64 GB solo de pesos en FP16.

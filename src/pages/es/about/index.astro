@@ -38,8 +38,16 @@ const description =
       Casi todo lo que se presenta como «IA» es llamar a un endpoint de chat. Lo mío está una capa
       más abajo: alquilar cajas multi-GPU y elegir ofertas por VRAM para partir un modelo de 32B
       entre dos GPUs con tensor-parallel; embeddings faciales agrupados por tenant, donde cruzar la
-      frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un servidor
-      MCP que le da memoria durable a los agentes de código, con 181 tests detrás.
+      frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un sistema de
+      recuperación que le da memoria durable a los agentes de código sobre MCP.
+    </p>
+    <p>
+      Ese último es un pipeline RAG completo, no un envoltorio sobre una base vectorial:
+      recuperación híbrida que mezcla similitud coseno con puntaje por palabra clave y después
+      aplica reranking, chunking dimensionado según el tipo de contenido porque el código truncado
+      a mitad de función se recupera como ruido, y un registro de proveedores de embeddings que cae
+      a una implementación local de TF-IDF para que el sistema siga funcionando sin API key y sin
+      red. Veinticinco herramientas sobre MCP, 181 tests.
     </p>
 
     <h2>Cómo trabajo</h2>

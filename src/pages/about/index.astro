@@ -38,8 +38,15 @@ const description =
       Most work described as "AI" means calling a chat endpoint. Mine sits a layer below that:
       renting multi-GPU boxes and picking offers by VRAM so a 32B model can be split across two
       GPUs with tensor parallelism; face embeddings clustered per tenant, where crossing a tenant
-      boundary throws rather than silently merging people; and an MCP server that gives coding
-      agents durable project memory, with 181 tests behind it.
+      boundary throws rather than silently merging people; and a retrieval system that gives
+      coding agents durable project memory over MCP.
+    </p>
+    <p>
+      That last one is a full RAG pipeline rather than a vector-database wrapper: hybrid retrieval
+      that blends cosine similarity with keyword scoring and then reranks, chunking sized by
+      content type because code truncated mid-function retrieves as noise, and an embedding
+      provider registry that falls back to a local TF-IDF implementation so the system still works
+      with no API key and no network. Twenty-five tools over MCP, 181 tests.
     </p>
 
     <h2>How I work</h2>

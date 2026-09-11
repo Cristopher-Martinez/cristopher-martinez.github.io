@@ -9,7 +9,7 @@ stats:
   - { value: '291', label: 'files' }
   - { value: '72', label: 'tests' }
   - { value: '8', label: 'capabilities' }
-order: 2
+order: 3
 ---
 
 The product imports only the public index of each core capability

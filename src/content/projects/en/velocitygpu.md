@@ -8,7 +8,7 @@ stats:
   - { value: '32', label: 'files' }
   - { value: '0', label: 'runtime deps' }
   - { value: '11', label: 'tests' }
-order: 1
+order: 2
 ---
 
 A 32B model does not fit on one GPU — roughly 64 GB of weights in FP16. The
