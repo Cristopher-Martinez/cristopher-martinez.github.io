@@ -16,10 +16,10 @@ the first time. I work across the stack — React on the front, a GraphQL and
 Prisma API behind it, AWS Lambda deployed through CDK, CI pipelines and
 end-to-end suites — inside an engineering group of roughly forty.
 
-I worked on four products in the same family: **the Loopay platform**,
-**Bico** — a parallel product that is the base for the white-label brands
-**Masari** and **SuperPay** —, **the Bico mobile app**, and **a new suite** with
-its own backend.
+I worked on four products in the same family: **the Loopay platform** — the
+base for the white-label brands **Masari** and **SuperPay** —, **Bico**, a
+parallel product, **the Bico mobile app**, and **a new suite** with its own
+backend.
 
 ## Timeline
 
@@ -48,8 +48,9 @@ The year the platform stopped being only money-out.
   into the top-up module.
 - **Managed payouts** with a summary before approval; company admins can see
   their clients' balances.
-- **Step-by-step flow builder** for product onboarding, with currency formatting
-  and phone validation.
+- **Collection sources**: a three-step builder to onboard and configure a
+  collection source, with currency formatting and phone validation. The new
+  top-up module was built on top of it.
 - **Webhooks as a product**: each company registers its own URL with an encrypted
   secret, dispatch hooks into payin and payout, and a log model records every
   delivery. It closed with a **general webhook on a strategy pattern** —

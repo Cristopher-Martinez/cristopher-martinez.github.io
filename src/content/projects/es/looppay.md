@@ -17,10 +17,9 @@ de GraphQL y Prisma detrás, AWS Lambda desplegado con CDK, pipelines de CI y
 suites end-to-end — dentro de un equipo de ingeniería de alrededor de cuarenta
 personas.
 
-Participé en cuatro productos de la misma familia: **la plataforma Loopay**,
-**Bico** — un producto paralelo que es la base de las marcas blancas
-**Masari** y **SuperPay** —, **la app móvil de Bico**, y **una suite nueva** con
-su propio backend.
+Participé en cuatro productos de la misma familia: **la plataforma Loopay** —
+base de las marcas blancas **Masari** y **SuperPay** —, **Bico**, un producto
+paralelo, **la app móvil de Bico**, y **una suite nueva** con su propio backend.
 
 ## Línea de tiempo
 
@@ -49,8 +48,9 @@ El año en que la plataforma dejó de ser solo salida de dinero.
   al módulo de recarga.
 - **Payouts gestionados** con resumen previo a la aprobación; los administradores
   de empresa ven el saldo de sus clientes.
-- **Constructor de flujos por pasos** para el alta de productos, con formato de
-  moneda y validación de teléfono.
+- **Fuentes de recaudo**: constructor de tres pasos para dar de alta y
+  configurar una fuente de recaudo, con formato de moneda y validación de
+  teléfono. El módulo de recarga nuevo se integró sobre él.
 - **Webhooks como producto**: cada empresa registra su propia URL con secreto
   cifrado, el despacho se engancha en payin y payout, y un modelo de logs
   registra cada entrega. Cerró con un **webhook general con patrón de
