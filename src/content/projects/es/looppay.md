@@ -42,6 +42,8 @@ Tres meses, y ya estaba en la salida de dinero.
 - **Dispersiones programadas**: calendario y payouts diferidos, back y front.
 - Motor de email con Mailjet; cuentas bancarias de Ecuador.
 
+![Formulario de dispersión única: producto de origen, beneficiario, identificación, banco y cuenta, valor, pago programado y etiquetas.](../looppay/dispersion-unica.png)
+
 ### 2023 — notificaciones, payin y webhooks como producto
 
 El año en que la plataforma dejó de ser solo salida de dinero.
