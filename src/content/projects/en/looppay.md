@@ -33,8 +33,12 @@ Three months in, I was already on the money-out side.
 - **Document management and KYC** in the backoffice: documents area, KYC upload,
   alerts on re-upload.
 - **First payment rail: Wompi**, checkout widget and its webhook.
-- **Payouts v1**: bank-account validation on bulk dispersals, tags on single and
-  bulk payouts, alerts on rejections.
+- **Bulk dispersal**: a spreadsheet in the browser that validates every field —
+  beneficiary, document, bank, account type and number, amount — and produces
+  the payout batch as a draft; nothing executes until someone approves it. I
+  built it end to end.
+- **Payouts v1**: bank-account validation on the batch, tags on single and bulk
+  payouts, alerts on rejections.
 - **Scheduled dispersals**: calendar and deferred payouts, back and front.
 - Email engine on Mailjet; Ecuadorian bank accounts.
 
@@ -66,7 +70,8 @@ The year the platform stopped being only money-out.
   cashout templates.
 - **Lifecycle webhooks**: payout, cash-in and cash-out expiry, Iris.
 - **Beneficiaries** as their own entity: create, edit, account and type
-  validation, tag filters.
+  validation, and a favourites modal with tag filters to assemble a batch
+  without retyping anyone.
 - **Payout builder refactor**, with file upload.
 - **Compliance**: backoffice badges and mutation, approval module, legal
   agreement signing, extra onboarding fields.

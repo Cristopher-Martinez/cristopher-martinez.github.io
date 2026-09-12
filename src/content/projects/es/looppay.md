@@ -33,8 +33,12 @@ Tres meses, y ya estaba en la salida de dinero.
 - **Gestión de documentos y KYC** en el backoffice: área de documentos, carga de
   KYC, alertas al re-subir.
 - **Primer rail de pago: Wompi**, widget de cobro y su webhook.
-- **Payouts v1**: validación de cuenta bancaria en dispersiones masivas, tags en
-  payouts individuales y masivos, alertas en rechazados.
+- **Dispersión masiva**: una hoja de cálculo en el navegador que valida cada
+  campo — beneficiario, documento, banco, tipo y número de cuenta, valor — y
+  produce el lote de payouts como borrador; nada se ejecuta hasta que alguien lo
+  aprueba. La construí de punta a punta.
+- **Payouts v1**: validación de cuenta bancaria sobre el lote, tags en payouts
+  individuales y masivos, alertas en rechazados.
 - **Dispersiones programadas**: calendario y payouts diferidos, back y front.
 - Motor de email con Mailjet; cuentas bancarias de Ecuador.
 
@@ -67,7 +71,8 @@ El año en que la plataforma dejó de ser solo salida de dinero.
   de cashout para Payoneer.
 - **Webhooks de ciclo de vida**: payout, expiración de cashin y cashout, Iris.
 - **Beneficiarios** como entidad propia: alta, edición, validación de cuenta y
-  tipo, filtro por tags.
+  tipo, y un modal de favoritos con filtro por tags para armar un lote sin
+  volver a tipear a nadie.
 - **Refactor del constructor de payouts**, con carga de archivo.
 - **Compliance**: badges y mutación en backoffice, módulo de aprobación, firma de
   acuerdos legales, campos adicionales de onboarding.
