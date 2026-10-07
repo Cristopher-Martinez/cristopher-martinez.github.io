@@ -45,7 +45,7 @@ export const ui = {
     'exp.title': 'Experience',
     'footer.reach': 'Reach me',
     'footer.built': 'Astro · static · zero client JS by default',
-    'home.where': 'Bogotá, Colombia · Remote-friendly · Spanish and English',
+    'home.where': 'Caracas, Venezuela · Remote-friendly · Spanish and English',
   },
   es: {
     'site.title': 'Cristopher Martinez — Ingeniero Full-Stack Senior',
@@ -78,7 +78,7 @@ export const ui = {
     'exp.title': 'Experiencia',
     'footer.reach': 'Contacto',
     'footer.built': 'Astro · estático · cero JS en el cliente por defecto',
-    'home.where': 'Bogotá, Colombia · Remoto · Español e inglés',
+    'home.where': 'Caracas, Venezuela · Remoto · Español e inglés',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 
