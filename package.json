@@ -12,6 +12,7 @@
     "check": "astro check",
     "measure": "astro build && lhci autorun --config=./lighthouserc.fast.json",
     "measure:all": "astro build && lhci autorun",
+    "measure:prod": "lhci autorun --config=./lighthouserc.prod.json",
     "astro": "astro"
   },
   "dependencies": {

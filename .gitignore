@@ -29,3 +29,4 @@ pnpm-debug.log*
 .claude/
 .lighthouse-fast/
 .lighthouse-looppay/
+.lighthouse-prod/

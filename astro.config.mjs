@@ -6,10 +6,12 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the final domain before the first production build.
-  // Required by @astrojs/sitemap and by absolute Open Graph URLs — without it,
-  // link previews on LinkedIn and Slack render broken.
-  site: 'https://example.com',
+  // Required by @astrojs/sitemap and by absolute Open Graph URLs; without it,
+  // link previews on LinkedIn and Slack render broken. The repository is named
+  // <user>.github.io, so the site is served from the root and no ase is
+  // needed. A project repository would publish under a subpath and break every
+  // root-relative link.
+  site: 'https://cristopher-martinez.github.io',
 
   i18n: {
     locales: ['en', 'es'],
