@@ -2,19 +2,37 @@
 name: project-brain
 lang: es
 status: closed
-summary: Servidor MCP y extensión de VS Code que le da a los agentes de código memoria durable y consultable de un repositorio — recuperación híbrida sobre índice local, sin necesidad de API key.
+summary: Extensión de VS Code y servidor MCP que le da a los agentes de código una memoria permanente de un repositorio, que crece con él, para que gasten menos tokens. Hecho entre febrero y junio de 2026 y conservado como instantánea de referencia.
 stack: [TypeScript, MCP, RAG, Búsqueda híbrida, SQLite, VS Code API]
 stats:
   - { value: '25', label: 'tools MCP' }
   - { value: '181', label: 'tests' }
-  - { value: '839', label: 'commits' }
+  - { value: '839', label: 'commits, historial privado' }
 order: 1
 ---
 
-Los agentes de código olvidan todo entre sesiones. project-brain les da una
-memoria con alcance de proyecto que pueden consultar: notas de arquitectura,
-fixes pasados, convenciones y las relaciones entre ellas, expuestas sobre el
-Model Context Protocol como veinticinco herramientas.
+**Por qué existe.** Quería gastar menos tokens en VS Code. Los agentes de código
+olvidan todo entre sesiones y redescubren el mismo proyecto cada vez, así que
+project-brain les da una memoria permanente que crece con el código: los propios
+documentos del proyecto, indexados como vectores y embeddings, que el agente
+consulta en lugar de releerlo todo. El 12 de febrero la economía de tokens ya
+estaba escrita como principio de diseño, y cada skill aprendido debía ahorrar
+tokens en la tarea siguiente.
+
+**Hecho temprano, y se nota.** El primer commit es del 1 de febrero de 2026, unos
+dos meses después de que VS Code lanzara los
+[Agent Skills](https://code.visualstudio.com/updates/v1_107) como función
+experimental. Febrero es memoria, vectores y economía de tokens, junto con los
+primeros hooks. Marzo lo dominan los hooks, las puertas de validación y la
+orquestación con loops y enjambres: los arneses alrededor de las iteraciones de los
+agentes, para atrapar errores y mantenerlos en el camino previsto. El 31 de mayo
+llega un motor portable de puertas de calidad, con una puerta contra comandos
+destructivos. El último commit es de junio de 2026: ya no se mantiene y queda como
+instantánea de cómo abordé el problema.
+
+**Qué hace.** Expone esa memoria sobre el Model Context Protocol como veinticinco
+herramientas: notas de arquitectura, fixes pasados, convenciones y las relaciones
+entre ellas.
 
 **La recuperación es híbrida, no solo búsqueda vectorial.** Cada resultado
 puntúa similitud coseno contra el embedding de la consulta y coincidencia por
@@ -33,5 +51,5 @@ fragmento.
 **Los embeddings degradan con gracia.** Los proveedores viven detrás de un
 registro de estrategias que resuelve por orden: un servidor remoto de embeddings
 si hay uno configurado, y una implementación local de TF-IDF que está siempre
-disponible. La consecuencia es que funciona sin API key y sin red — peor
+disponible. La consecuencia es que funciona sin API key y sin red: peor
 recuperación, pero nunca una falla dura.
