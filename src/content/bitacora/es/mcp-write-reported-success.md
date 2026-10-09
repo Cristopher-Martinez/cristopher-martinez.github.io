@@ -48,8 +48,8 @@ opiniones descartaba entradas que no había escrito él mismo. Ahora se preserva
 Cuánto tiempo estuvo escondido. Una herramienta de escritura que devuelve
 `success` se cree, así que nadie va a mirar. La falla solo era visible revisando
 el sistema de archivos en busca de bytes que deberían haber estado ahí — algo que
-no hacés salvo que ya sospeches que el valor de retorno te está mintiendo.
+no se hace salvo que ya se sospeche que el valor de retorno está mintiendo.
 
 La forma general del asunto: **un valor de retorno es una afirmación sobre lo que
-pasó, y una afirmación no es evidencia.** Donde la escritura importa, verificá
+pasó, y una afirmación no es evidencia.** Donde la escritura importa, verifica
 que llegó.

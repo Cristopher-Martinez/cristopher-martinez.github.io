@@ -27,8 +27,8 @@ demostración canónica es que sumar un décimo con dos décimos no da tres déc
 Por operación el error está muy por debajo de un centavo y es invisible. A lo
 largo de un lote se acumula, y se acumula *distinto* según el orden en que las
 operaciones hayan corrido. Eso último es lo que lo vuelve miserable de
-perseguir: corré la misma conciliación dos veces sobre los mismos datos en otro
-orden y podés obtener otra discrepancia.
+perseguir: ejecuta la misma conciliación dos veces sobre los mismos datos en otro
+orden y es posible obtener otra discrepancia.
 
 ## Lo que descarté
 
@@ -38,7 +38,7 @@ que era real.
 
 **Un umbral de tolerancia.** «Diferencias menores a cinco centavos son
 aceptables» suena pragmático y es la misma decisión de traje — dejaste escrito
-el tamaño de la mentira que vas a aceptar, y desde entonces no podés detectar
+el tamaño de la mentira que vas a aceptar, y desde entonces no se puede detectar
 nada más chico que eso.
 
 ## La decisión

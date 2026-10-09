@@ -1,23 +1,37 @@
 ---
 name: velocitygpu
 lang: en
-status: closed
-summary: Rents a multi-GPU box on Vast.ai and serves a 32B model through vLLM with tensor parallelism, from a single page.
-stack: [Node, vLLM, Vast.ai, Electron]
+status: open
+repo: https://github.com/Cristopher-Martinez/velocitygpu
+summary: Rent a GPU on Vast.ai, serve an open-weight LLM with Ollama, and chat with it from one page. Built to run models my own machine cannot hold.
+stack: [Node, Ollama, Vast.ai, Electron]
 stats:
-  - { value: '32', label: 'files' }
+  - { value: '36', label: 'files' }
   - { value: '0', label: 'runtime deps' }
-  - { value: '11', label: 'tests' }
+  - { value: '257', label: 'tests' }
 order: 2
 ---
 
-A 32B model does not fit on one GPU — roughly 64 GB of weights in FP16. The
-provisioner therefore searches for an offer with two or more GPUs **on the same
-node**, and vLLM splits the model across them over NVLink with
-`--tensor-parallel-size`.
+A 14B to 32B model does not fit on a laptop, and I wanted to run them anyway.
+Renting a GPU by the hour is cheap. Doing it by hand is not: offers vanish
+between the search and the rental, some hosts crash on start, a multi-gigabyte
+download takes minutes, and a forgotten instance keeps billing. velocitygpu is
+the glue that handles those failure modes: pick a model, rent, watch the
+deployment, chat.
 
-The part that took the longest was not the happy path. It was the reconciler
-that closes orphaned instances when a rental fails halfway through, because a
-GPU box nobody shut down keeps billing.
+It searches Vast.ai for a machine that fits the model, ranks the offers
+(skipping hosts that failed before and preferring hosts that worked), starts
+the official Ollama image, pulls the model, and waits until it is actually
+resident in VRAM before it says ready.
 
-Runs on the Node standard library: no runtime dependencies at all.
+The hard part was not the happy path. It was keeping the rental honest when
+something dies halfway. The state lives only in memory, so a reconciler asks
+Vast on boot what is still running, re-adopts the box with its real uptime, and
+recovers which model it serves.
+[The log entry](/bitacora/orphan-gpu-reconciler/) tells that story.
+
+The same rental approach now runs video transcoding in
+[velocitykeep](/work/velocitykeep/), triggered by a queue instead of a person.
+
+The limits, plainly: it is a proof of concept. One rental at a time, no
+authentication on the app server, no idle shutdown. The README says so first.

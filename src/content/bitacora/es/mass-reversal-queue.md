@@ -49,7 +49,7 @@ Esa segunda parte es la que vale la pena explicar. Con la cola en Redis y los
 saldos en Postgres, encolar el trabajo y aplicarlo son dos escrituras a dos
 sistemas, y **nada obliga a que coincidan**. Un corte entre ambas deja trabajo
 pendiente que ya se aplicó, o trabajo aplicado que sigue encolado. Las dos
-situaciones están mal, y después de una falla parcial no podés distinguir cuál
+situaciones están mal, y después de una falla parcial no se puede distinguir cuál
 pasó sin reconstruirlo a mano.
 
 Poner la cola en la misma base hace que encolar y aplicar compartan transacción.

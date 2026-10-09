@@ -55,7 +55,7 @@ segundo pipeline al lado del primero.
 ## Lo que le diría a quien lo haga después
 
 La trampa es ir por la abstracción en la integración dos, cuando todavía no hay
-evidencia suficiente sobre qué partes varían de verdad — y terminás con un
+evidencia suficiente sobre qué partes varían de verdad — y se termina con un
 contrato con la forma de una casualidad.
 
 Dos es casualidad. En tres se ve la forma. Esperar hasta ahí se siente como

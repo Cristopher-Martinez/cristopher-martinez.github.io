@@ -43,8 +43,8 @@ const description =
     <h2>I ship it and I run it</h2>
     <p>
       Two products answer on their own domains today, on infrastructure I operate: VPS, Docker,
-      nginx, Prometheus and Grafana, across five deployment pipelines. The monorepo carries 1,923
-      commits and 258 test files.
+      nginx, Prometheus and Grafana, across five CI and deploy workflows. The monorepo carries
+      over 2,100 commits and over 650 test files.
     </p>
     <p>
       I also audited it against myself — thirteen modules, fifty-eight findings, eleven of them
@@ -55,9 +55,10 @@ const description =
     <h2>AI as infrastructure, not as an API call</h2>
     <p>
       Most work described as "AI" means calling a chat endpoint. Mine sits a layer below that:
-      renting multi-GPU boxes and picking offers by VRAM so a 32B model can be split across two
-      GPUs with tensor parallelism; face embeddings clustered per tenant, where crossing a tenant
-      boundary throws rather than silently merging people; and a retrieval system that gives
+      renting GPUs by the hour to run open-weight models my own machine cannot hold, with a
+        reconciler that re-adopts a box still billing after a crash; face embeddings clustered per
+        tenant, where crossing a tenant
+        boundary throws rather than silently merging people; and a retrieval system that gives
       coding agents durable project memory over MCP.
     </p>
     <p>

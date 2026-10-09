@@ -45,8 +45,8 @@ const description =
     <h2>Lo entrego y lo opero</h2>
     <p>
       Hoy hay dos productos respondiendo en sus propios dominios, sobre infraestructura que
-      administro: VPS, Docker, nginx, Prometheus y Grafana, con cinco pipelines de despliegue. El
-      monorepo lleva 1.923 commits y 258 archivos de test.
+      administro: VPS, Docker, nginx, Prometheus y Grafana, con cinco workflows de CI y
+      despliegue. El monorepo supera los 2.100 commits y los 650 archivos de test.
     </p>
     <p>
       También lo audité contra mí mismo: trece módulos, cincuenta y ocho hallazgos, once de ellos
@@ -57,9 +57,10 @@ const description =
     <h2>IA como infraestructura, no como llamada a una API</h2>
     <p>
       Casi todo lo que se presenta como «IA» es llamar a un endpoint de chat. Lo mío está una capa
-      más abajo: alquilar cajas multi-GPU y elegir ofertas por VRAM para partir un modelo de 32B
-      entre dos GPUs con tensor-parallel; embeddings faciales agrupados por tenant, donde cruzar la
-      frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un sistema de
+      más abajo: alquilar GPUs por hora para correr modelos abiertos que mi propia máquina no aguanta, con un
+        reconciliador que readopta una caja que sigue facturando tras una caída; embeddings faciales
+        agrupados por tenant, donde cruzar la
+        frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un sistema de
       recuperación que le da memoria durable a los agentes de código sobre MCP.
     </p>
     <p>

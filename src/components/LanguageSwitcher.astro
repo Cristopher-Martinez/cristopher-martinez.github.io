@@ -10,7 +10,9 @@ import {
 } from '../i18n/ui';
 
 const current: Lang = langFromPath(Astro.url.pathname);
-const route = routeWithoutLang(Astro.url.pathname);
+// The 404 page has no translated twin, so there the switcher falls back to the
+// other language's home page instead of pointing at a page that does not exist.
+const route = routeWithoutLang(Astro.url.pathname) === '/404/' ? '/' : routeWithoutLang(Astro.url.pathname);
 const t = useTranslations(current);
 
 // Link to the same page in the other language, not to the home page — sending
