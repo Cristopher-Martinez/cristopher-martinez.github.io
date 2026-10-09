@@ -4,7 +4,7 @@ lang: es
 date: 2026-08-05
 summary: Deshacer una dispersión masiva significa escribir en cada billetera que tocó. Una sola transacción no aguanta eso, y una cola que vive fuera del libro contable puede terminar contradiciéndolo.
 outcome: La cola y el libro contable comitean juntos, así que una falla a mitad de lote ya no puede dejar el trabajo pendiente y los saldos describiendo realidades distintas. Recuperarse es leer estado, no conciliar dos fuentes.
-project: LoopPay
+project: Loopay
 tags: [pagos, postgres, colas, integridad]
 ---
 

@@ -1,7 +1,8 @@
 ---
-name: LoopPay — payments platform
+name: Loopay — payments platform
 lang: en
-status: closed
+status: live
+url: https://loopay.com/
 summary: 'Four years on the systems that move money: bulk dispersals and their reversal, provider webhook integrations, balance reconciliation, rate limiting and audit trails.'
 stack: [TypeScript, GraphQL, Prisma, PostgreSQL, AWS Lambda, OpenTelemetry, React, React Native]
 stats:
@@ -42,7 +43,7 @@ Three months in, I was already on the money-out side.
 - **Scheduled dispersals**: calendar and deferred payouts, back and front.
 - Email engine on Mailjet; Ecuadorian bank accounts.
 
-![Single dispersal form: source product, beneficiary, identification, bank and account, amount, scheduled payment and tags.](../looppay/dispersion-unica.png)
+![Single dispersal form: source product, beneficiary, identification, bank and account, amount, scheduled payment and tags.](../loopay/dispersion-unica.png)
 
 ### 2023 — notifications, payin, and webhooks as a product
 

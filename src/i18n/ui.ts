@@ -29,7 +29,7 @@ export const ui = {
     'skip.content': 'Skip to content',
     'live.label': 'Live',
     'home.eyebrow': 'Payments · Full-stack · AI',
-    'home.current': 'Payments infrastructure at LoopPay · since 2022',
+    'home.current': 'Payments infrastructure at Loopay · since 2022',
     'home.pitch':
       'Four years building payments infrastructure: money in, money out, and the reconciliation that has to balance. On my own time I split a video platform into contract-bound capabilities and built the AI tooling that develops it.',
     'work.files': 'files',
@@ -62,7 +62,7 @@ export const ui = {
     'skip.content': 'Saltar al contenido',
     'live.label': 'En vivo',
     'home.eyebrow': 'Pagos · Full-stack · IA',
-    'home.current': 'Infraestructura de pagos en LoopPay · desde 2022',
+    'home.current': 'Infraestructura de pagos en Loopay · desde 2022',
     'home.pitch':
       'Cuatro años construyendo infraestructura de pagos: dinero que entra, dinero que sale, y la conciliación que tiene que cerrar. Fuera del horario separé una plataforma de video en capacidades con contratos y construí el tooling de IA que la desarrolla.',
     'work.files': 'archivos',

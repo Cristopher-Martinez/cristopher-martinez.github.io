@@ -4,7 +4,7 @@ lang: es
 date: 2023-01-20
 summary: Dos centavos es poco para frenar algo y suficiente para probar que el sistema está mal. El monto nunca fue el problema — el problema es lo que te cuesta después haberlo tolerado.
 outcome: La aritmética del dinero pasó a operaciones decimales exactas. Una diferencia en una conciliación vuelve a ser una señal, en vez de ruido que todos aprenden a ignorar.
-project: LoopPay
+project: Loopay
 tags: [pagos, correctitud, decimales]
 ---
 

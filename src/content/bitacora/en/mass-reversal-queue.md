@@ -4,7 +4,7 @@ lang: en
 date: 2026-08-05
 summary: Undoing a bulk dispersal means writing to every wallet it touched. One transaction cannot hold that, and a queue kept outside the ledger can disagree with it after a crash.
 outcome: The queue and the ledger commit together, so a failure mid-batch can no longer leave pending work and balances describing different realities. Recovery is reading state, not reconciling two sources.
-project: LoopPay
+project: Loopay
 tags: [payments, postgres, queues, data-integrity]
 ---
 

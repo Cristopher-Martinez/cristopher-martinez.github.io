@@ -4,7 +4,7 @@ lang: en
 date: 2023-01-20
 summary: Two cents is small enough to wave away and large enough to prove the system is wrong. The amount was never the problem — the problem was what tolerating it costs you afterwards.
 outcome: Money arithmetic moved to exact decimal operations. A difference in a reconciliation is a signal again, instead of noise everyone learns to ignore.
-project: LoopPay
+project: Loopay
 tags: [payments, correctness, decimals]
 ---
 

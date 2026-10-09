@@ -4,7 +4,7 @@ lang: en
 date: 2024-01-02
 summary: Each integration arrived with its own webhook and got its own implementation. The fix was not a faster pipeline — it was separating what every provider shares from the small part where they differ.
 outcome: Adding a provider stopped being a project and became implementing one strategy against a defined contract. The shared path — receiving, logging, dispatching — is written once and every integration inherits it.
-project: LoopPay
+project: Loopay
 tags: [payments, webhooks, architecture, integration]
 ---
 

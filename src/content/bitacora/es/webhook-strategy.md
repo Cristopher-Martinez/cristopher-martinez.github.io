@@ -4,7 +4,7 @@ lang: es
 date: 2024-01-02
 summary: Cada integración llegaba con su propio webhook y recibía su propia implementación. El arreglo no fue un pipeline más rápido, sino separar lo que todos los proveedores comparten de la parte chica donde difieren.
 outcome: Sumar un proveedor dejó de ser un proyecto y pasó a ser implementar una estrategia contra un contrato definido. El camino compartido —recibir, registrar, despachar— se escribe una vez y toda integración lo hereda.
-project: LoopPay
+project: Loopay
 tags: [pagos, webhooks, arquitectura, integración]
 ---
 

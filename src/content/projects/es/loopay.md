@@ -1,7 +1,8 @@
 ---
-name: LoopPay — plataforma de pagos
+name: Loopay — plataforma de pagos
 lang: es
-status: closed
+status: live
+url: https://loopay.com/
 summary: 'Cuatro años en los sistemas que mueven dinero: dispersiones masivas y su reversión, integración de webhooks de proveedores, conciliación de saldos, límites de tasa y trazas de auditoría.'
 stack: [TypeScript, GraphQL, Prisma, PostgreSQL, AWS Lambda, OpenTelemetry, React, React Native]
 stats:
@@ -42,7 +43,7 @@ Tres meses, y ya estaba en la salida de dinero.
 - **Dispersiones programadas**: calendario y payouts diferidos, back y front.
 - Motor de email con Mailjet; cuentas bancarias de Ecuador.
 
-![Formulario de dispersión única: producto de origen, beneficiario, identificación, banco y cuenta, valor, pago programado y etiquetas.](../looppay/dispersion-unica.png)
+![Formulario de dispersión única: producto de origen, beneficiario, identificación, banco y cuenta, valor, pago programado y etiquetas.](../loopay/dispersion-unica.png)
 
 ### 2023 — notificaciones, payin y webhooks como producto
 
