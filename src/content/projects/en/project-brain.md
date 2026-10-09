@@ -1,7 +1,8 @@
 ---
 name: project-brain
 lang: en
-status: closed
+status: open
+repo: https://github.com/Cristopher-Martinez/project-brain-vscode
 summary: VS Code extension and MCP server that gives coding agents a permanent memory of a codebase that grows with it, so they spend fewer tokens. Built February to June 2026 and kept as a reference snapshot.
 stack: [TypeScript, MCP, RAG, Hybrid search, SQLite, VS Code API]
 stats:
@@ -27,6 +28,10 @@ orchestration: the harnesses around the agents' iterations, there to catch mista
 and keep an agent on the intended path. On May 31 a portable quality-gate engine
 lands, with a gate against destructive commands. The last commit is from June 2026.
 It is no longer maintained and stands as a snapshot of how I approached the problem.
+
+**The public repository.** It is a single-commit snapshot, archived and read-only.
+The full history stays private, which is why the commit count above is labelled
+as private history. The server behind the cloud features is not part of it.
 
 **What it does.** It exposes that memory over the Model Context Protocol as
 twenty-five tools: architecture notes, past fixes, conventions and the relations
