@@ -34,6 +34,7 @@ The same rental approach now runs video transcoding in
 [velocitykeep](/work/velocitykeep/), triggered by a queue instead of a person.
 
 The limits, plainly: it is a proof of concept. One rental at a time, no
-authentication on the app server, no idle shutdown. The README says so first.
+authentication on the app server, no idle shutdown. The README calls it a proof
+of concept in its opening lines and lists these limits in their own section.
 
 **About the numbers above.** Counted on the main branch of the public repository: tracked files, runtime dependencies in `package.json`, and the test cases the suite reports when it runs.

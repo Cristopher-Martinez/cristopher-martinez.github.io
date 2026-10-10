@@ -13,12 +13,18 @@ order: 3
 ---
 
 El producto importa únicamente el índice público de cada capacidad core
-(`@velocity/core-*`); las subrutas internas están prohibidas por una regla de
-ESLint, no por convención. Todas las dependencias se cablean en un solo
-composition root y bajan como puertos.
+(`@velocity/core-*`), y todos los imports de `src` pasan por esos índices. La
+regla de lint que prohíbe las subrutas internas está escrita pero todavía no corre
+en CI, así que hoy el límite lo sostiene la revisión. La API cablea sus
+dependencias en un solo composition root y las pasa como puertos; los workers
+tienen sus propios puntos de entrada.
 
-La entrega es HLS con AES-128 y tickets de reproducción firmados. La ingesta es
-solo de admin y los subtítulos vienen embebidos en la fuente.
+La entrega es HLS detrás de tickets de reproducción firmados, con URLs de
+segmentos acotadas por un token HMAC. El cifrado AES-128 está integrado — viene de
+velocitykeep a través del paquete core de entrega — pero está apagado en este
+producto. La ingesta es solo de admin y los subtítulos vienen embebidos en la
+fuente. El producto existe para demostrar estas habilidades; no es un servicio
+comercial.
 
 Buena parte de la ingeniería vive del lado del admin, en un pipeline que lleva un
 episodio desde "existe en alguna parte" hasta "se reproduce, cifrado, en la
@@ -59,8 +65,8 @@ Lo que lo hace seguro para dejarlo solo:
   un crash pierde como máximo la serie que estaba en curso.
 
 La auto-ingesta es uno de varios temporizadores del worker, junto con el
-enriquecimiento de metadata, un barrido de reconciliación entre base de datos y
-almacenamiento, y una purga de media.
+enriquecimiento de metadata y un barrido de reconciliación entre base de datos y
+almacenamiento; la purga de media corre como su propia cola.
 
 ### Prueba de que corre sin supervisión
 
@@ -110,9 +116,9 @@ muestran una sola vez).
   produce una escalera de renditions para que el reproductor cambie según el ancho
   de banda. Una serie puede sobrescribir el perfil global.
 - **Un job tiene que fallar fuerte.** Una guarda rechaza la salida que se
-  decodifica como basura verde en lugar de publicarla, y un watchdog mata un
-  `ffmpeg` que deja de reportar progreso — existe por un job que se quedó
-  colgado catorce horas.
+  decodifica como basura verde en lugar de publicarla, y un límite de tiempo duro
+  mata una corrida de `ffmpeg` que se extiende demasiado — existe por un job que
+  se quedó colgado catorce horas.
 - **Estado idempotente.** El ID del job es el ID del media; la máquina de estados
   va de pendiente a procesando, listo o fallido, y de fallido de vuelta a
   procesando al reintentar. El callback del worker está firmado con HMAC y es
@@ -124,9 +130,10 @@ muestran una sola vez).
   los jobs activos y conserva su ID.
 - Las miniaturas por escena y la extracción de subtítulos embebidos corren en el
   mismo pipeline.
-- **Entrega.** La clave AES-128 solo se sirve con un token firmado vigente, y las
-  rutas de los segmentos llevan un token HMAC acotado a un prefijo de media; sin
-  él, el proxy responde 403.
+- **Entrega.** Las rutas de los segmentos llevan un token HMAC acotado a un solo
+  media; sin él, el proxy responde 403. El paquete core también puede entregar
+  una clave AES-128 solo a un token firmado vigente, pero el cifrado está apagado
+  en este producto.
 
 ## GPUs alquiladas y el autoscaler
 
@@ -156,8 +163,8 @@ por hora.
   un LLM y un armador de grupos de series con veto cronológico.
 - **Control de acceso.** JWT de Supabase verificados contra el JWKS del emisor
   (ES256) y una guarda de roles en cada ruta de admin.
-- **Observabilidad y recuperación.** Métricas Prometheus desde el worker, con una
-  regla contra labels de alta cardinalidad, un dump diario de la base con
+- **Observabilidad y recuperación.** Métricas Prometheus desde el worker y la API,
+  con labels de baja cardinalidad a propósito (sin IDs de usuario), un dump diario de la base con
   historial de solo lectura y un plan de recuperación ante desastres escrito.
 
 **Sobre los números de arriba.** Contados en octubre de 2026 sobre la rama principal del repositorio de velocityanime, el que está en producción: archivos rastreados, archivos con nombre `*.test.*` o `*.spec.*`, y commits sin contar merges. El repositorio es privado.

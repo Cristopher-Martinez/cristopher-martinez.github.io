@@ -7,7 +7,7 @@ summary: Alquila una GPU en Vast.ai, sirve un modelo abierto con Ollama y conver
 stack: [Node, Ollama, Vast.ai, Electron]
 stats:
   - { value: '36', label: 'archivos' }
-  - { value: '0', label: 'dependencias' }
+  - { value: '0', label: 'dependencias de runtime' }
   - { value: '257', label: 'tests' }
 order: 2
 ---
@@ -37,6 +37,7 @@ persona.
 
 Los límites, sin maquillaje: es una prueba de concepto. Un alquiler a la vez,
 sin autenticación en el servidor de la app y sin apagado por inactividad. El
-README lo dice primero.
+README la presenta como prueba de concepto en sus primeras líneas y enumera estos
+límites en su propia sección.
 
 **Sobre los números de arriba.** Contados sobre la rama principal del repositorio público: archivos rastreados, dependencias de runtime en `package.json`, y los casos de test que reporta la suite al ejecutarse.

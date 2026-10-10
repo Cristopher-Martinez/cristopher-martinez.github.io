@@ -28,42 +28,44 @@ const description =
       incluidos.
     </p>
     <p>
-      Un detalle que no es un detalle: ahí la aritmética del dinero es decimal exacta, nunca punto
-      flotante. Cualquiera que haya visto aparecer un centavo de la nada en un libro contable sabe
-      por qué eso no es una preferencia.
+      Un detalle que aprendí temprano: un monto es tan confiable como el lugar por donde entra. En
+      mis primeros meses hice que el armador de payouts rechazara los montos ambiguos — un punto o
+      una coma solo se aceptan como separador decimal, y cualquier otra cosa se frena en su fila y
+      columna antes de que exista un lote.
     </p>
 
     <h2>Sistemas, no funcionalidades</h2>
     <p>
-      Separé una plataforma de video en ocho paquetes de capacidades que se hablan a través de
-      contratos publicados. Los productos importan únicamente el índice público de cada capacidad
-      — las subrutas internas están bloqueadas por una regla de lint y no por convención, porque
-      una frontera que nadie hace cumplir deja de ser una frontera. Las dependencias se cablean en
-      un solo composition root y bajan como puertos.
+      Separé una plataforma de video en ocho paquetes que se hablan a través de contratos
+      publicados: cuatro capacidades core, más contratos, configuración, observabilidad y
+      monetización. Los productos importan únicamente el índice público de cada capacidad, y hoy
+      ninguno entra en sus partes internas. La regla de lint que lo prohibiría vive en el preset
+      compartido; conectarla al CI de cada app es la pieza que falta. En velocityanime, las
+      dependencias se cablean en un solo composition root y se pasan como puertos.
     </p>
 
     <h2>Lo entrego y lo opero</h2>
     <p>
       Hoy hay dos productos respondiendo en sus propios dominios, sobre infraestructura que
       administro: VPS, Docker, nginx, Prometheus y Grafana. Los dos nacieron de un mismo
-      monorepo — ocho paquetes de capacidades, 2.075 commits sin contar merges, 658 archivos de
+      monorepo — ocho paquetes, 2.075 commits sin contar merges, 658 archivos de
       test — y hoy cada uno se despliega desde su propio repositorio, con su propio pipeline de
       CI y despliegue.
     </p>
     <p>
-      También lo audité contra mí mismo: trece módulos, cincuenta y ocho hallazgos, once de ellos
-      críticos, ordenados por un grafo de dependencias. Esa auditoría dice más de cómo trabajo que
+      También lo audité contra mí mismo: trece módulos, 112 hallazgos, 20 de ellos críticos,
+      ordenados por un grafo de dependencias. Esa auditoría dice más de cómo trabajo que
       el código limpio — salgo a buscar mis propios errores antes de que los encuentre otro.
     </p>
 
     <h2>IA como infraestructura, no como llamada a una API</h2>
     <p>
-      Casi todo lo que se presenta como «IA» es llamar a un endpoint de chat. Lo mío está una capa
-      más abajo: alquilar GPUs por hora para correr modelos abiertos que mi propia máquina no aguanta, con un
-        reconciliador que readopta una caja que sigue facturando tras una caída; embeddings faciales
-        agrupados por tenant, donde cruzar la
-        frontera de un tenant lanza excepción en vez de mezclar personas en silencio; y un sistema de
-      recuperación que le da memoria durable a los agentes de código sobre MCP.
+      Mi trabajo con IA está una capa por debajo del endpoint de chat: alquilar GPUs por hora para
+      correr modelos abiertos que mi propia máquina no aguanta, con un reconciliador que readopta
+      una caja que sigue facturando tras una caída; un paquete core que agrupa embeddings faciales
+      por tenant y lanza excepción en vez de mezclar personas entre tenants, todavía no conectado
+      al producto; y un sistema de recuperación que le da memoria durable a los agentes de código
+      sobre MCP.
     </p>
     <p>
       Ese último es un pipeline RAG completo, no un envoltorio sobre una base vectorial:

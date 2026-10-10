@@ -66,7 +66,12 @@ const isCurrent = (route: string) => (route === '/' ? here === '/' : here.starts
     padding: 0;
   }
 
+  /* Class-less links are reset to inline for prose; nav links still need the
+     full hit area on a phone. */
   .primary a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--font-mono);
     font-size: var(--step--2);
     letter-spacing: 0.12em;

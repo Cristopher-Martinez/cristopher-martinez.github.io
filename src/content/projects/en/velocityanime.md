@@ -13,12 +13,17 @@ order: 3
 ---
 
 The product imports only the public index of each core capability
-(`@velocity/core-*`); internal subpaths are forbidden by an ESLint rule rather
-than by convention. Every dependency is wired in one composition root and passed
-down as ports.
+(`@velocity/core-*`), and every import in `src` goes through those indexes. A
+lint rule that forbids the internal subpaths is written but not yet wired into
+CI, so today the boundary is held by review. The API wires its dependencies in
+one composition root and passes them down as ports; the workers have their own
+entry points.
 
-Delivery is HLS with AES-128 and signed playback tickets. Ingest is admin-only,
-subtitles ship embedded in the source.
+Delivery is HLS behind signed playback tickets, with segment URLs scoped by an
+HMAC token. AES-128 encryption is integrated — it comes from velocitykeep through
+the core delivery package — but it is switched off in this product. Ingest is
+admin-only, subtitles ship embedded in the source. The product exists to
+demonstrate these skills; it is not a commercial service.
 
 Most of the engineering lives on the admin side, in a pipeline that takes an
 episode from "it exists somewhere" to "it plays, encrypted, in the right
@@ -57,7 +62,8 @@ What makes it safe to leave alone:
   loses at most the series that was in flight.
 
 Auto-ingest is one of several timers in the worker, next to metadata
-enrichment, a reconcile sweep between database and storage, and a media purge.
+enrichment and a reconcile sweep between database and storage; media purge runs
+as its own queue.
 
 ### Proof that it runs unattended
 
@@ -103,8 +109,8 @@ rented GPU, and a worker joins the fleet with nothing but an API URL and a key
   of renditions so the player can switch with the available bandwidth. A series
   can override the global profile.
 - **A job must fail loudly.** A guard rejects output that decodes as green
-  garbage instead of publishing it, and a watchdog kills an `ffmpeg` that stops
-  reporting progress — it exists because of a job that sat there for fourteen
+  garbage instead of publishing it, and a hard time limit kills an `ffmpeg` run
+  that goes on too long — it exists because of a job that sat there for fourteen
   hours.
 - **Idempotent state.** A job's ID is the media's ID; the state machine goes
   pending, processing, ready or failed, and failed back to processing on retry.
@@ -114,9 +120,9 @@ rented GPU, and a worker joins the fleet with nothing but an API URL and a key
   per run, a grace period and a guard that refuses to run when the numbers look
   wrong. The orphan reaper rescues active jobs and keeps their ID.
 - Scene thumbnails and embedded-subtitle extraction run in the same pipeline.
-- **Delivery.** The AES-128 key is only served with an unexpired signed token, and
-  segment paths carry an HMAC token scoped to one media prefix; without it the
-  proxy answers 403.
+- **Delivery.** Segment paths carry an HMAC token scoped to one media; without it
+  the proxy answers 403. The core package can also hand out an AES-128 key only to
+  an unexpired signed token, but encryption is off in this product.
 
 ## Rented GPUs and the autoscaler
 
@@ -145,8 +151,8 @@ When the queue backs up, transcoding can move to a GPU rented by the hour.
   series-group builder with a chronological veto.
 - **Access control.** Supabase JWTs verified against the issuer's JWKS (ES256) and
   a role guard on every admin route.
-- **Observability and recovery.** Prometheus metrics from the worker, with a rule
-  against high-cardinality labels, a daily database dump with a read-only history
+- **Observability and recovery.** Prometheus metrics from the worker and the API,
+  kept to low-cardinality labels on purpose (no user IDs), a daily database dump with a read-only history
   and a written disaster-recovery plan.
 
 **About the numbers above.** Counted in October 2026 on the main branch of the velocityanime repository, the one deployed to production: tracked files, files named `*.test.*` or `*.spec.*`, and commits with merges excluded. The repository is private.

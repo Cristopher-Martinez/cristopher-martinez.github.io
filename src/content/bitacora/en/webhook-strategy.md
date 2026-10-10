@@ -1,14 +1,14 @@
 ---
 title: Every new payment provider cost what the first one cost
 lang: en
-date: 2024-01-02
+date: 2023-11-29
 summary: Each integration arrived with its own webhook and got its own implementation. The fix was not a faster pipeline — it was separating what every provider shares from the small part where they differ.
 outcome: Adding a provider stopped being a project and became implementing one strategy against a defined contract. The shared path — receiving, logging, dispatching — is written once and every integration inherits it.
 project: Loopay
 tags: [payments, webhooks, architecture, integration]
 ---
 
-*Written in 2026, about work from January 2024.*
+*Written in 2026, about work from November 2023.*
 
 ## The problem
 

@@ -18,9 +18,10 @@
 
   --ink: #0f1519;
   --ink-soft: #4e5d67;
-  /* 4.8:1 on --surface. The dim tone is used at --step--2, which is small
-     text, so it needs the full 4.5:1 rather than the 3:1 large-text pass. */
-  --ink-dim: #64727c;
+  /* 4.8:1 on --ground, 5.0:1 on --surface-2, 5.3:1 on --surface. The dim tone is
+     used at --step--2, which is small text, so it needs the full 4.5:1 rather than
+     the 3:1 large-text pass, on every background it sits on. */
+  --ink-dim: #5d6b75;
 
   --line: #d4dde4;
   --line-soft: #e3eaef;

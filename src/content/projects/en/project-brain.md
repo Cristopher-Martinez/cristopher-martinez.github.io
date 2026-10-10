@@ -45,8 +45,8 @@ passed through a rerank stage that boosts on context before the top-k cut.
 Pure vector search misses exact identifiers: a function name is a keyword
 problem, not a semantic one.
 
-**Chunking is content-aware.** Prose splits at 1200 characters with 150 of
-overlap; code splits at 1600 with 300. Code needs the bigger window because a
+**Chunking is content-aware.** Prose splits at 1,200 characters with 150 of
+overlap; code splits at 1,600 with 300. Code needs the bigger window because a
 function truncated mid-body retrieves as noise, and it needs the bigger overlap
 because the signature and the body must be able to land in the same chunk.
 
@@ -55,4 +55,4 @@ resolves in order: a remote embedding server when one is configured, and a local
 TF-IDF implementation that is always available. The consequence is that the thing
 works with no API key and no network: worse retrieval, but never a hard failure.
 
-**About the numbers above.** Tools are the distinct tool names exposed by the two MCP servers in the public snapshot. Tests are the `it()` and `test()` cases in its 113 test files, counted statically. Commits come from the private history, merges excluded.
+**About the numbers above.** Tools are the distinct tool names exposed by the two MCP servers in the public snapshot. Tests are the `it()` and `test()` cases in its 113 test files, counted statically. Commits are the 833 on the last working branch of the private history, merges excluded; the default branch holds 788 of them.

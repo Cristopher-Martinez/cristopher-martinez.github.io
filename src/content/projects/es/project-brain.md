@@ -49,8 +49,8 @@ contexto antes del corte top-k. La búsqueda puramente vectorial se pierde los
 identificadores exactos: el nombre de una función es un problema de keyword, no
 de semántica.
 
-**El chunking depende del contenido.** La prosa corta en 1200 caracteres con 150
-de solapamiento; el código corta en 1600 con 300. El código necesita la ventana
+**El chunking depende del contenido.** La prosa corta en 1.200 caracteres con 150
+de solapamiento; el código corta en 1.600 con 300. El código necesita la ventana
 más grande porque una función truncada a mitad del cuerpo se recupera como ruido,
 y necesita más solapamiento para que la firma y el cuerpo puedan caer en el mismo
 fragmento.
@@ -61,4 +61,4 @@ si hay uno configurado, y una implementación local de TF-IDF que está siempre
 disponible. La consecuencia es que funciona sin API key y sin red: peor
 recuperación, pero nunca una falla dura.
 
-**Sobre los números de arriba.** Las herramientas son los nombres distintos que exponen los dos servidores MCP del snapshot público. Los tests son los casos `it()` y `test()` de sus 113 archivos de test, contados de forma estática. Los commits salen del historial privado, sin contar merges.
+**Sobre los números de arriba.** Las herramientas son los nombres distintos que exponen los dos servidores MCP del snapshot público. Los tests son los casos `it()` y `test()` de sus 113 archivos de test, contados de forma estática. Los commits son los 833 de la última rama de trabajo del historial privado, sin contar merges; la rama principal tiene 788.

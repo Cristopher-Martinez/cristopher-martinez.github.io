@@ -29,7 +29,8 @@ ejecuta el mismo worker contra la misma cola y hace las miniaturas, la huella de
 audio, la escalera de calidades codificada por hardware, la verificación de
 calidad, el cifrado y la subida, y las cajas se destruyen cuando se acaba el
 trabajo. Es el mismo enfoque de alquiler que
-[velocitygpu](/es/work/velocitygpu/), portado y no compartido: allí una persona
+[velocitygpu](/es/work/velocitygpu/), con el código portado desde velocityanime y
+no compartido: en velocitygpu una persona
 alquila una caja, aquí lo hace la cola.
 [La entrada de bitácora](/es/bitacora/gpu-autoscaler-for-transcoding/) cuenta qué
 cambia cuando no hay una persona en el circuito.

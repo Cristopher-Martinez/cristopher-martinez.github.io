@@ -44,7 +44,8 @@ the box keeps running. Even there the README tells you to confirm in the
 console anyway.
 
 **vLLM across several GPUs.** The first commit of the proof of concept, on June
-18, rented a multi-GPU box and served the model with vLLM. By the next day it was
+18 in my private monorepo, rented a multi-GPU box and served the model with vLLM.
+(The public repository was published with a fresh history in October 2026.) By the next day it was
 Ollama on a single GPU. The code keeps the reasons in its comments: with Ollama
 the machine starts empty and the model is pulled after boot, so one image serves
 any model, and asking for more GPUs than the model uses means paying for idle
@@ -54,15 +55,16 @@ cards and, on some hosts, a container device error.
 
 Treat the provider's account as the source of truth and ask it on boot. The
 reconciler lists the instances that are alive and recognises its own by the
-official Ollama image, so it can never adopt someone else's machine on the same
-account. It takes the most recently started one and rebuilds the state: the
+official Ollama image. That is a heuristic, not an ownership check: another Ollama
+box on the same account would match too, which is acceptable for a single-user
+tool. It takes the most recently started one and rebuilds the state: the
 physical host, the real uptime from the contract's start, and the model, which
 it reads from Ollama's own list of pulled models. Then it probes the endpoint to
 place the box in the right phase. The panel shows the instance again and the
 Destroy button works.
 
-All the decision logic is pure functions with tests. Only one function touches
-the network, and any failure there is swallowed so a bad connection never keeps
+All the decision logic is pure functions with tests. The few network calls sit at
+the edges, and any failure in them is swallowed so a bad connection never keeps
 the server from starting. It runs only when the store is idle, so it never
 overwrites a rental that is already tracked.
 
@@ -79,7 +81,8 @@ fresh boxes as dead, so the check accepts any of three signals.
 ## What is still open
 
 One rental at a time, no idle shutdown, and no authentication on the app server.
-The README says so before anything else.
+The README calls it a proof of concept in its opening lines and lists these limits
+in their own section.
 
 ## Where it went next
 

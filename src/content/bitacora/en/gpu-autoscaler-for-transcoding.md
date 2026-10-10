@@ -3,7 +3,7 @@ title: 'When no human clicks Rent: letting a queue backlog buy GPUs'
 lang: en
 date: 2026-07-30
 summary: In velocitygpu a person rents one GPU. In velocitykeep the transcode backlog does it, and that moves the hard problems from provisioning to spending, trust and cleanup.
-outcome: Transcoding scales out to rented GPUs when work piles up and back to zero when the backlog empties. Spend is bounded by a fleet cap per hour, a startup deadline and a zombie reaper, and rented machines hold only short-lived credentials.
+outcome: Transcoding scales out to rented GPUs when work piles up and back to zero when the backlog empties. Spend is bounded by a fleet cap per hour, a startup deadline and a zombie reaper, and rented machines hold only a revocable key limited to a reduced configuration.
 project: velocitykeep
 tags: [infra, gpu, autoscaling, security]
 ---
@@ -16,10 +16,10 @@ The same need shows up in video. Transcoding and post-processing are heavy and
 bursty, and a GPU only earns its price while there is work for it.
 
 [velocitykeep](https://velocitykeep.com) is the self-hosted video platform I run
-in production, called velocitystream until recently. Its rental code comes from
-the same lineage as velocitygpu: a Vast.ai client, ranked offers and a memory of
-hosts that failed. It was ported rather than shared, and it had to grow, because
-here nobody is watching a panel.
+in production, called velocitystream until recently. Its rental code was ported
+from velocityanime's, which follows the same ideas as velocitygpu: a Vast.ai
+client, ranked offers and a memory of hosts that failed. It was ported rather than
+shared, and it had to grow, because here nobody is watching a panel.
 
 ## The problem
 
@@ -48,7 +48,8 @@ scored before renting: only GPU classes that can run the hardware encoder, above
 a driver floor.
 
 The machine is treated as untrusted. It receives a reduced configuration, fetched
-at boot with a short-lived key flagged as remote, and it reaches the queue and the
+at boot with a revocable worker key flagged as remote — the service refuses to
+provision a machine with any other kind — and it reaches the queue and the
 database through a tunnel back to my server instead of through exposed ports.
 
 The box is just another consumer of the existing queue. It runs the same worker in
@@ -58,9 +59,11 @@ the quality check, encryption and the upload. It writes a heartbeat so the
 platform can tell a working machine from a silent one. There is no second
 pipeline to maintain.
 
-Cleanup has a single path: destroy on the provider first, then delete the local
-record and write a cost ledger entry. A machine that does not report in within
-twelve minutes is given up on. One that stops sending heartbeats is destroyed and
+Cleanup has a single path: destroy on the provider first, then write the cost
+ledger entry, and only then delete the local record, because the cost is computed
+from it. A machine that does not report in within twelve minutes is given up on;
+the deadline stretches, up to three times, while its boot status keeps changing.
+One that stops sending heartbeats is destroyed and
 its host banned. An idle fleet shuts down when the backlog stays at zero, and a
 reconciler prunes instances the provider no longer has.
 

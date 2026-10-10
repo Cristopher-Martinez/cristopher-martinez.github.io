@@ -27,7 +27,8 @@ grows, an autoscaler rents Vast.ai machines. Each one runs the same worker
 against the same queue, doing thumbnails, audio fingerprinting, the
 hardware-encoded ladder, the quality check, encryption and the upload, and the
 boxes are destroyed when the work runs out. It is the same rental approach as
-[velocitygpu](/work/velocitygpu/), ported rather than shared: there a person
+[velocitygpu](/work/velocitygpu/), with the code ported from velocityanime rather
+than shared: in velocitygpu a person
 rents one box, here the queue does.
 [The log entry](/bitacora/gpu-autoscaler-for-transcoding/) covers what changes
 when no human is in the loop.

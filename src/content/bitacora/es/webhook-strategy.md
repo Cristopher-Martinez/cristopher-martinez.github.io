@@ -1,14 +1,14 @@
 ---
 title: Cada proveedor nuevo costaba lo mismo que el primero
 lang: es
-date: 2024-01-02
+date: 2023-11-29
 summary: Cada integración llegaba con su propio webhook y recibía su propia implementación. El arreglo no fue un pipeline más rápido, sino separar lo que todos los proveedores comparten de la parte chica donde difieren.
 outcome: Sumar un proveedor dejó de ser un proyecto y pasó a ser implementar una estrategia contra un contrato definido. El camino compartido —recibir, registrar, despachar— se escribe una vez y toda integración lo hereda.
 project: Loopay
 tags: [pagos, webhooks, arquitectura, integración]
 ---
 
-*Escrita en 2026, sobre trabajo de enero de 2024.*
+*Escrita en 2026, sobre trabajo de noviembre de 2023.*
 
 ## El problema
 
