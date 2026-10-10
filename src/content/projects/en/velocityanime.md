@@ -6,9 +6,9 @@ url: https://velocityanime.com
 summary: Single-tenant streaming product on contract-bound core capabilities that keeps its own catalogue current, unattended.
 stack: [TypeScript, Fastify, Zod, Prisma, Docker, HLS]
 stats:
-  - { value: '291', label: 'files' }
-  - { value: '72', label: 'tests' }
-  - { value: '8', label: 'capabilities' }
+  - { value: '669', label: 'files' }
+  - { value: '193', label: 'test files' }
+  - { value: '665', label: 'commits' }
 order: 3
 ---
 

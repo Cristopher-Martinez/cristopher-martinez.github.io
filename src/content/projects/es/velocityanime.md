@@ -6,9 +6,9 @@ url: https://velocityanime.com
 summary: Producto de streaming single-tenant sobre capacidades core con contratos que mantiene su catálogo al día, sin intervención.
 stack: [TypeScript, Fastify, Zod, Prisma, Docker, HLS]
 stats:
-  - { value: '291', label: 'archivos' }
-  - { value: '72', label: 'tests' }
-  - { value: '8', label: 'capacidades' }
+  - { value: '669', label: 'archivos' }
+  - { value: '193', label: 'archivos de test' }
+  - { value: '665', label: 'commits' }
 order: 3
 ---
 
