@@ -6,9 +6,9 @@ repo: https://github.com/Cristopher-Martinez/project-brain-vscode
 summary: Extensión de VS Code y servidor MCP que le da a los agentes de código una memoria permanente de un repositorio, que crece con él, para que gasten menos tokens. Hecho entre febrero y junio de 2026 y conservado como instantánea de referencia.
 stack: [TypeScript, MCP, RAG, Búsqueda híbrida, SQLite, VS Code API]
 stats:
-  - { value: '25', label: 'tools MCP' }
-  - { value: '181', label: 'tests' }
-  - { value: '839', label: 'commits, historial privado' }
+  - { value: '31', label: 'tools MCP' }
+  - { value: '1.304', label: 'tests' }
+  - { value: '833', label: 'commits, historial privado' }
 order: 1
 ---
 
@@ -36,9 +36,10 @@ solo lectura. El historial completo sigue privado, por eso el conteo de commits 
 arriba dice historial privado. El servidor detrás de las funciones en la nube no
 forma parte de él.
 
-**Qué hace.** Expone esa memoria sobre el Model Context Protocol como veinticinco
-herramientas: notas de arquitectura, fixes pasados, convenciones y las relaciones
-entre ellas.
+**Qué hace.** Expone esa memoria sobre el Model Context Protocol como treinta y
+una herramientas, repartidas entre un servidor independiente y un gateway dentro
+de la extensión: notas de arquitectura, fixes pasados, convenciones y las
+relaciones entre ellas.
 
 **La recuperación es híbrida, no solo búsqueda vectorial.** Cada resultado
 puntúa similitud coseno contra el embedding de la consulta y coincidencia por
