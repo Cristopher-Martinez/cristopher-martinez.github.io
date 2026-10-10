@@ -8,6 +8,8 @@ project: Loopay
 tags: [payments, correctness, decimals]
 ---
 
+*Written in 2026, about work from January 2023.*
+
 ## The problem
 
 A reconciliation did not balance. The difference was two cents.

@@ -148,3 +148,5 @@ When the queue backs up, transcoding can move to a GPU rented by the hour.
 - **Observability and recovery.** Prometheus metrics from the worker, with a rule
   against high-cardinality labels, a daily database dump with a read-only history
   and a written disaster-recovery plan.
+
+**About the numbers above.** Counted in October 2026 on the main branch of the velocityanime repository, the one deployed to production: tracked files, files named `*.test.*` or `*.spec.*`, and commits with merges excluded. The repository is private.

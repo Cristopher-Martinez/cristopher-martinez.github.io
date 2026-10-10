@@ -54,3 +54,5 @@ because the signature and the body must be able to land in the same chunk.
 resolves in order: a remote embedding server when one is configured, and a local
 TF-IDF implementation that is always available. The consequence is that the thing
 works with no API key and no network: worse retrieval, but never a hard failure.
+
+**About the numbers above.** Tools are the distinct tool names exposed by the two MCP servers in the public snapshot. Tests are the `it()` and `test()` cases in its 113 test files, counted statically. Commits come from the private history, merges excluded.

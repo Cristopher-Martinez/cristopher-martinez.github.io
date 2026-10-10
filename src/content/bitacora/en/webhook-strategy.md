@@ -8,6 +8,8 @@ project: Loopay
 tags: [payments, webhooks, architecture, integration]
 ---
 
+*Written in 2026, about work from January 2024.*
+
 ## The problem
 
 The first provider integration had a webhook. So did the second. Each one was

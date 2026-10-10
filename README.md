@@ -29,9 +29,9 @@ Note that size budgets measure **transferred** bytes. A negative test built from
 repetitive data compresses to nothing and sails through; use incompressible data
 to prove the gate still bites.
 
-**Content schemas encode what the content has to prove.** A log entry without a
-measured outcome is rejected at build time, because an entry that stops at "and
-then I built it" reads as marketing. A project marked `live` must carry the URL
+**Content schemas encode what the content has to prove.** A log entry without an
+outcome is rejected at build time, because an entry that stops at "and then I
+built it" reads as marketing. A project marked `live` must carry the URL
 it is live at.
 
 **Both languages are first-class.** English serves from `/`, Spanish from

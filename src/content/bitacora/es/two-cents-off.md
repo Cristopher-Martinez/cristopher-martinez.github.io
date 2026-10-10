@@ -8,6 +8,8 @@ project: Loopay
 tags: [pagos, correctitud, decimales]
 ---
 
+*Escrita en 2026, sobre trabajo de enero de 2023.*
+
 ## El problema
 
 Una conciliación no cerraba. La diferencia era de dos centavos.

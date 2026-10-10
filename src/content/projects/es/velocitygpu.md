@@ -38,3 +38,5 @@ persona.
 Los límites, sin maquillaje: es una prueba de concepto. Un alquiler a la vez,
 sin autenticación en el servidor de la app y sin apagado por inactividad. El
 README lo dice primero.
+
+**Sobre los números de arriba.** Contados sobre la rama principal del repositorio público: archivos rastreados, dependencias de runtime en `package.json`, y los casos de test que reporta la suite al ejecutarse.

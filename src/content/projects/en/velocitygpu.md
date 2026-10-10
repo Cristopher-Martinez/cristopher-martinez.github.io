@@ -35,3 +35,5 @@ The same rental approach now runs video transcoding in
 
 The limits, plainly: it is a proof of concept. One rental at a time, no
 authentication on the app server, no idle shutdown. The README says so first.
+
+**About the numbers above.** Counted on the main branch of the public repository: tracked files, runtime dependencies in `package.json`, and the test cases the suite reports when it runs.

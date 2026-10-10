@@ -159,3 +159,5 @@ por hora.
 - **Observabilidad y recuperación.** Métricas Prometheus desde el worker, con una
   regla contra labels de alta cardinalidad, un dump diario de la base con
   historial de solo lectura y un plan de recuperación ante desastres escrito.
+
+**Sobre los números de arriba.** Contados en octubre de 2026 sobre la rama principal del repositorio de velocityanime, el que está en producción: archivos rastreados, archivos con nombre `*.test.*` o `*.spec.*`, y commits sin contar merges. El repositorio es privado.

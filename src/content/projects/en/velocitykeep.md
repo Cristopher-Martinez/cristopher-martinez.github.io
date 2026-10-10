@@ -6,8 +6,8 @@ url: https://velocitykeep.com
 summary: Self-hosted video platform with queued HLS transcoding on GPUs rented on demand, quality targeted by VMAF, and guest accounts. In production, formerly velocitystream.
 stack: [Node, React, FFmpeg, HLS, BullMQ, Redis, Prisma, PostgreSQL, Docker]
 stats:
-  - { value: '2.2k', label: 'files' }
-  - { value: '581', label: 'test files' }
+  - { value: '2,280', label: 'files' }
+  - { value: '633', label: 'test files' }
   - { value: '11', label: 'deploy jobs' }
 order: 4
 ---
@@ -37,3 +37,5 @@ JavaScript, not TypeScript. The typed, contract-bound capability packages in
 [velocityanime](/work/velocityanime/) exist because operating this taught me
 where the seams needed to be. The migration is the architecture decision, not a
 debt I am hiding.
+
+**About the numbers above.** Counted in October 2026 on the main branch of the velocitykeep repository: tracked files, files named `*.test.*` or `*.spec.*`, and the jobs in its deploy workflow. The repository is private.

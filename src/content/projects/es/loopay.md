@@ -33,7 +33,8 @@ Tres meses, y ya estaba en la salida de dinero.
 
 - **Gestión de documentos y KYC** en el backoffice: área de documentos, carga de
   KYC, alertas al re-subir.
-- **Primer rail de pago: Wompi**, widget de cobro y su webhook.
+- **Primer rail de pago: Wompi**, widget de cobro y su webhook — la primera vía
+  por la que entró dinero.
 - **Dispersión masiva**: una hoja de cálculo en el navegador que valida cada
   campo — beneficiario, documento, banco, tipo y número de cuenta, valor — y
   produce el lote de payouts como borrador; nada se ejecuta hasta que alguien lo
@@ -47,7 +48,8 @@ Tres meses, y ya estaba en la salida de dinero.
 
 ### 2023 — notificaciones, payin y webhooks como producto
 
-El año en que la plataforma dejó de ser solo salida de dinero.
+El año en que el cobro pasó de un checkout a un producto: recargas, fuentes de
+recaudo y un segundo rail.
 
 - **Motor de notificaciones**: email, notificación al usuario por payout, Twilio
   como canal de entrega; **migración de Mailjet a Sendinblue**.
@@ -127,11 +129,13 @@ El año en que el trabajo se volvió de plataforma.
 - App móvil: **módulo nativo de seguridad para WebView**, desautorización de
   dispositivos.
 
-## Cómo entra el dinero — los rails, en orden de llegada
+## Los rails, en orden de llegada
 
 Wompi (2022) · Kushki (2023) · Payphone, Transfiya, Iris, Epayco, Payoneer (2024)
-· Banco Agrario, Fireblocks, PSE, Bre-B (2025) · Bridge API, Fogafín, AiPrise
-(2026).
+· Banco Agrario, Fireblocks, PSE, Bre-B (2025) · Bridge API (2026).
+
+AiPrise (KYC) y Fogafín (una contraparte institucional) aparecen en 2026, pero no
+son rails de pago, así que no entran en esta lista.
 
 Doce integraciones distintas en cuatro años. La lección que dejan está en la
 bitácora: el décimo proveedor no debería costar lo que costó el primero.

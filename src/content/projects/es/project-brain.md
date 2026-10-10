@@ -60,3 +60,5 @@ registro de estrategias que resuelve por orden: un servidor remoto de embeddings
 si hay uno configurado, y una implementación local de TF-IDF que está siempre
 disponible. La consecuencia es que funciona sin API key y sin red: peor
 recuperación, pero nunca una falla dura.
+
+**Sobre los números de arriba.** Las herramientas son los nombres distintos que exponen los dos servidores MCP del snapshot público. Los tests son los casos `it()` y `test()` de sus 113 archivos de test, contados de forma estática. Los commits salen del historial privado, sin contar merges.
